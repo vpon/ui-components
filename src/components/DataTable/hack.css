@@ -1,0 +1,5 @@
+.hack-no-horizontal-scrollbar {
+  .z-horizontal-scrollbar {
+    display: none;
+  }
+}
