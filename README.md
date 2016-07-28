@@ -7,7 +7,7 @@
   - [x] Breadcrumb
   - [x] ActionDialog
   - [x] InfoDialog
-  - [ ] SearchBox
+  - [x] SearchBox
 
 ## Usage
 
@@ -21,7 +21,7 @@
 
 ```javascript
 // import form top level
-import { Helpers, DataTable, DateRange, Resizer, Breadcrumb } from 'ui-compoents';
+import { Helpers, DataTable, DateRange, Resizer, Breadcrumb, ... } from 'ui-compoents';
 
 // Helpers
 import Helpers from 'ui-components/lib/utils/Helpers';
@@ -49,4 +49,7 @@ import ActionDialog from 'ui-components/lib/components/ActionDialog';
 
 // InfoDialog
 import InfoDialog from 'ui-components/lib/components/InfoDialog';
+
+// SearchBox
+import SearchBox from 'ui-components/lib/components/SearchBox';
 ```
