@@ -105,9 +105,9 @@ class DateRange extends Component{
       <span>
         <Dropdown
           pullRight
-          id='date-range-type-dropdown'
-          bsStyle='default'
-          ref='dropdownButton'
+          id="date-range-type-dropdown"
+          bsStyle="default"
+          ref="dropdownButton"
           key={0}
           className={this.props.className}
         >

@@ -147,16 +147,16 @@ class CustomDialog extends Component{
   render() {
     const disableSubmit = (this.state.startText && this.state.endText) ? false : true;
     return (
-      <Modal show={this.props.show} onHide={this.props.onHide} bsSize='large' id='date_range_custom_dialog' backdrop='static' animation={false}>
+      <Modal show={this.props.show} onHide={this.props.onHide} bsSize="large" id="date_range_custom_dialog" backdrop="static" animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>{i18n.t('common:::dateRange::Custom Date Range')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="form-group text-center">
             <input
-              type='text'
-              name='start'
-              id='start'
+              type="text"
+              name="start"
+              id="start"
               value={this.state.startText}
               onFocus={this.handleFocusChange}
               onChange={this.handleInputChange}
@@ -164,19 +164,19 @@ class CustomDialog extends Component{
             />
             {NO_BREAK_SPACE}～{NO_BREAK_SPACE}
             <input
-              type='text'
-              name='end'
-              id='end'
+              type="text"
+              name="end"
+              id="end"
               value={this.state.endText}
               onFocus={this.handleFocusChange}
               onChange={this.handleInputChange}
               placeholder={this.props.dateFormat}
             />
           </div>
-          <div id='date_range_datepicker' />
+          <div id="date_range_datepicker" />
         </Modal.Body>
         <Modal.Footer>
-          <Button bsStyle='primary' onClick={this.handleApply} disabled={disableSubmit}>{i18n.t('common:::Apply')}</Button>
+          <Button bsStyle="primary" onClick={this.handleApply} disabled={disableSubmit}>{i18n.t('common:::Apply')}</Button>
         </Modal.Footer>
       </Modal>
     );

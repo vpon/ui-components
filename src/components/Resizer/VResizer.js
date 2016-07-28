@@ -66,8 +66,8 @@ class VResizer extends Component {
 
   render() {
     return (
-      <div className='ui-layout-resizer ui-layout-resizer-vertical' ref='resizer' onMouseDown={this.handleMouseDown} style={{'float': 'left', width: '0.3%'}}>
-        <div className='ui-layout-resizer_toggler' onClick={this.handleClick} onMouseDown={this.stopPropagation}></div>
+      <div className="ui-layout-resizer ui-layout-resizer-vertical" ref="resizer" onMouseDown={this.handleMouseDown} style={{'float': 'left', width: '0.3%'}}>
+        <div className="ui-layout-resizer_toggler" onClick={this.handleClick} onMouseDown={this.stopPropagation}></div>
       </div>
     );
   }

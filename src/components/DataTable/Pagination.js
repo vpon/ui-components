@@ -65,12 +65,12 @@ class Pager extends Component {
       );
     }
     return (
-      <div className='datagrid-pager text-right'>
+      <div className="datagrid-pager text-right">
         {PageSizeSelector}
         {NO_BREAK_SPACE}
         <Button disabled={this.props.page === this.props.minPage} onClick={this.handleClickPage.bind(this, 'prev')}><i className="fa fa-caret-left"></i></Button>
         {NO_BREAK_SPACE}
-        <input type='text' className='form-width-xs text-center' ref='pageNoInput' value={this.state.page} onChange={this.handleEnterPage}/>
+        <input type="text" className="form-width-xs text-center" ref="pageNoInput" value={this.state.page} onChange={this.handleEnterPage}/>
         {NO_BREAK_SPACE}
         of <span>{this.props.maxPage}</span>
         {NO_BREAK_SPACE}
@@ -93,23 +93,21 @@ Pager.propTypes = {
   onPageChange: React.PropTypes.func.isRequired
 };
 
-class Pagination extends Component {
-  render() {
-    const page = (this.props.offset === 0 ? 1 : Math.ceil(this.props.offset / this.props.limit + 1));
-    const maxPage = Math.ceil(this.props.total / this.props.limit);
+const Pagination = (props) => {
+  const page = (props.offset === 0 ? 1 : Math.ceil(props.offset / props.limit + 1));
+  const maxPage = Math.ceil(props.total / props.limit);
 
-    return (
-      <Pager
-        page={page}
-        pageSize={this.props.limit}
-        pageSizes={this.props.pageSizes}
-        dataSourceCount={this.props.total}
-        minPage={1}
-        maxPage={maxPage}
-        onPageChange={this.props.onPageChange}
-      />
-    );
-  }
+  return (
+    <Pager
+      page={page}
+      pageSize={props.limit}
+      pageSizes={props.pageSizes}
+      dataSourceCount={props.total}
+      minPage={1}
+      maxPage={maxPage}
+      onPageChange={props.onPageChange}
+    />
+  );
 }
 
 Pagination.propTypes = {

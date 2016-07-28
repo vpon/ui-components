@@ -67,8 +67,8 @@ class HResizer extends Component {
 
   render() {
     return (
-      <div className='ui-layout-resizer ui-layout-resizer-horizontal' ref='resizer' onMouseDown={this.handleMouseDown}>
-        <div className='ui-layout-resizer_toggler' onClick={this.handleClick} onMouseDown={this.stopPropagation}></div>
+      <div className="ui-layout-resizer ui-layout-resizer-horizontal" ref="resizer" onMouseDown={this.handleMouseDown}>
+        <div className="ui-layout-resizer_toggler" onClick={this.handleClick} onMouseDown={this.stopPropagation}></div>
       </div>
     );
   }

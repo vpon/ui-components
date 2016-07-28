@@ -44,7 +44,7 @@ class ActionDialog extends Component{
       <Modal
         show={this.props.show}
         onHide={this.props.onHide}
-        backdrop='static'
+        backdrop="static"
         animation={false}
         bsSize={this.props.bsSize}
         dialogClassName={this.props.dialogClassName}
@@ -83,7 +83,7 @@ class ActionDialog extends Component{
         </Modal.Body>
         <Modal.Footer modalClassName={this.props.footerClassName}>
           { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{i18n.t('common:::Cancel')}</Button> : null}
-          <Button bsStyle='primary' data-dismiss="modal" onClick={this.props.onSubmit}>{i18n.t('common:::OK')}</Button>
+          <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{i18n.t('common:::OK')}</Button>
         </Modal.Footer>
       </Modal>
     );

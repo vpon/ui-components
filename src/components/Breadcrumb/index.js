@@ -6,9 +6,9 @@ const BreadcrumbItem = (props) => (
 );
 
 const Breadcrumb = (props) => (
-  <ol className='breadcrumb'>
-    <BreadcrumbItem className='bc__home'>
-      <Link to='/'><i className="fa fa-home"></i></Link>
+  <ol className="breadcrumb">
+    <BreadcrumbItem className="bc__home">
+      <Link to="/"><i className="fa fa-home"></i></Link>
     </BreadcrumbItem>
     {props.children}
   </ol>
