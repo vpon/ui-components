@@ -4,7 +4,7 @@
   - [x] DataTable(wrap react-datagrid)
   - [x] DateRange
   - [x] Resizer
-  - [ ] Breadcrumb
+  - [x] Breadcrumb
   - [ ] ActionDialog
   - [ ] ConfirmDialog
   - [ ] SearchBox
@@ -20,10 +20,11 @@
 ### 2. import nesessary component to use
 
 ```javascript
-import { Helpers, DataTable, DateRange, Resizer } from 'ui-compoents';
+import { Helpers, DataTable, DateRange, Resizer, Breadcrumb } from 'ui-compoents';
 // or
 import Helpers from 'ui-components/lib/utils/Helpers';
 import DataTable from 'ui-components/lib/components/DataTable';
-import DateRange from 'ui-components/lib/components/DateRange';
-import Resizer from 'ui-components/lib/components/Resizer';
+import DateRange, { DateHelpers, rangeTypes } from 'ui-components/lib/components/DateRange';
+import Resizer, { ResizerHelpers, HResizer, VResizer } from 'ui-components/lib/components/Resizer';
+import Breadcrumb, { BreadcrumbItem } from 'ui-components/lib/components/Breadcrumb';
 ```
