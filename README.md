@@ -8,6 +8,7 @@
   - [x] ActionDialog
   - [x] InfoDialog
   - [x] SearchBox
+  - [x] InvalidWarning
 
 ## Usage
 
@@ -52,4 +53,7 @@ import InfoDialog from 'ui-components/lib/components/InfoDialog';
 
 // SearchBox
 import SearchBox from 'ui-components/lib/components/SearchBox';
+
+// InvalidWarning
+import InvalidWarning from 'ui-components/lib/components/InvalidWarning';
 ```

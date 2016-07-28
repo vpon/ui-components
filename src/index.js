@@ -6,6 +6,7 @@ import Breadcrumb from './components/Breadcrumb';
 import ActionDialog from './components/ActionDialog';
 import InfoDialog from './components/InfoDialog';
 import SearchBox from './components/SearchBox';
+import InvalidWarning from './components/InvalidWarning';
 
 export default {
   Helpers: Helpers,
@@ -15,5 +16,6 @@ export default {
   Breadcrumb: Breadcrumb,
   ActionDialog: ActionDialog,
   InfoDialog: InfoDialog,
-  SearchBox: SearchBox
+  SearchBox: SearchBox,
+  InvalidWarning: InvalidWarning
 };
