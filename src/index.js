@@ -4,6 +4,7 @@ import DateRange from './components/DateRange';
 import Resizer from './components/Resizer';
 import Breadcrumb from './components/Breadcrumb';
 import ActionDialog from './components/ActionDialog';
+import InfoDialog from './components/InfoDialog';
 
 export default {
   Helpers: Helpers,
@@ -11,5 +12,6 @@ export default {
   DateRange: DateRange,
   Resizer: Resizer,
   Breadcrumb: Breadcrumb,
-  ActionDialog: ActionDialog
+  ActionDialog: ActionDialog,
+  InfoDialog: InfoDialog
 };

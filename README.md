@@ -6,7 +6,7 @@
   - [x] Resizer
   - [x] Breadcrumb
   - [x] ActionDialog
-  - [ ] ConfirmDialog
+  - [x] InfoDialog
   - [ ] SearchBox
 
 ## Usage
@@ -46,4 +46,7 @@ import Breadcrumb, { BreadcrumbItem } from 'ui-components/lib/components/Breadcr
 
 // ActionDialog
 import ActionDialog from 'ui-components/lib/components/ActionDialog';
+
+// InfoDialog
+import InfoDialog from 'ui-components/lib/components/InfoDialog';
 ```
