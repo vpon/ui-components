@@ -3,7 +3,7 @@
   - [x] Helpers
   - [x] DataTable(wrap react-datagrid)
   - [x] DateRange
-  - [ ] Resizer
+  - [x] Resizer
   - [ ] Breadcrumb
   - [ ] ActionDialog
   - [ ] ConfirmDialog
