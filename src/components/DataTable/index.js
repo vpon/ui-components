@@ -183,5 +183,6 @@ DataTable.defaultProps = {
   emptyText: 'No records'
 };
 
+DataTable.Pagination = Pagination;
 
 export default DataTable;
