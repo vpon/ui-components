@@ -5,7 +5,8 @@
   "description": "A collection of react components used by several internal projects.",
   "main": "lib/index.js",
   "scripts": {
-    "compile": "babel src --copy-files --out-dir lib"
+    "compile": "babel --copy-files --out-dir lib src",
+    "watch": "babel --watch --copy-files --out-dir lib src"
   },
   "babel": {
     "presets": ["es2015", "stage-0", "react"],
@@ -14,7 +15,11 @@
   "dependencies": {
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "react-bootstrap": "^0.28.3",
+    "i18next": "^2.0.4",
+    "moment": "^2.10.6",
+    "moment-timezone": "^0.4.1"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
