@@ -9,18 +9,25 @@
     "watch": "babel --watch --copy-files --out-dir lib src"
   },
   "babel": {
-    "presets": ["es2015", "stage-0", "react"],
-    "plugins": ["add-module-exports"]
+    "presets": [
+      "es2015",
+      "stage-0",
+      "react"
+    ],
+    "plugins": [
+      "add-module-exports"
+    ]
   },
   "dependencies": {
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-router": "^2.0.0",
-    "lodash": "^3.10.1",
-    "react-bootstrap": "^0.28.3",
     "i18next": "^2.0.4",
+    "lodash": "^3.10.1",
     "moment": "^2.10.6",
-    "moment-timezone": "^0.4.1"
+    "moment-timezone": "^0.4.1",
+    "react": "^15.2.1",
+    "react-bootstrap": "^0.30.0",
+    "react-datagrid": "^2.1.1",
+    "react-dom": "^15.2.1",
+    "react-router": "^2.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

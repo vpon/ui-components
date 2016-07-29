@@ -7,11 +7,11 @@ class SearchBox extends Component {
     super(props);
 
     this.state = {
-      keyword: props.keyword || null
+      keyword: props.keyword || ''
     };
 
     this.clearKeywordField = () => {
-      this.setState({keyword: null});
+      this.setState({keyword: ''});
       this.props.handleQueryChange({keyword: null});
     };
 
