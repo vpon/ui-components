@@ -21,7 +21,7 @@
 ### 2. import nesessary component to use
 
 ```javascript
-// import form top level
+// import from top level
 import { Helpers, DataTable, DateRange, Resizer, Breadcrumb, ... } from 'ui-compoents';
 
 // Helpers
@@ -34,7 +34,7 @@ import Pagination from 'ui-components/lib/components/DataTable/Pagination';
 
 // DateRange
 import DateRange, { DateHelpers, rangeTypes } from 'ui-components/lib/components/DateRange';
-import DateHelpers form 'ui-components/lib/components/DateRange/Helpers';
+import DateHelpers from 'ui-components/lib/components/DateRange/Helpers';
 
 // Resizer
 import Resizer, { ResizerHelpers, HResizer, VResizer } from 'ui-components/lib/components/Resizer';
