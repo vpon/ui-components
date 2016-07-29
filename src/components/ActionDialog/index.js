@@ -49,10 +49,10 @@ class ActionDialog extends Component{
         bsSize={this.props.bsSize}
         dialogClassName={this.props.dialogClassName}
       >
-        <Modal.Header closeButton modalClassName={this.props.headerClassName}>
-          <Modal.Title modalClassName={this.props.titleClassName}>{this.props.title}</Modal.Title>
+        <Modal.Header closeButton bsClass={this.props.headerClassName}>
+          <Modal.Title bsClass={this.props.titleClassName}>{this.props.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body modalClassName={this.props.bodyClassName} style={assign({}, this.props.bodyStyle, {maxHeight: maxHeight})}>
+        <Modal.Body bsClass={this.props.bodyClassName} style={assign({}, this.props.bodyStyle, {maxHeight: maxHeight})}>
           {this.props.warning}
           <div className="panel panel-default">
             <DataTable
@@ -81,7 +81,7 @@ class ActionDialog extends Component{
             </div>
           </div>
         </Modal.Body>
-        <Modal.Footer modalClassName={this.props.footerClassName}>
+        <Modal.Footer bsClass={this.props.footerClassName}>
           { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{i18n.t('common:::Cancel')}</Button> : null}
           <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{i18n.t('common:::OK')}</Button>
         </Modal.Footer>

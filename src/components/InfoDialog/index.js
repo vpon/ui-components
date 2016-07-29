@@ -8,13 +8,13 @@ class InfoDialog extends Component{
   render() {
     return (
       <Modal show={this.props.show} onHide={this.props.onHide} backdrop="static" animation={false} bsSize={this.props.bsSize} dialogClassName={this.props.dialogClassName}>
-        <Modal.Header closeButton modalClassName={this.props.headerClassName}>
-          <Modal.Title modalClassName={this.props.titleClassName}>{this.props.title}</Modal.Title>
+        <Modal.Header closeButton bsClass={this.props.headerClassName}>
+          <Modal.Title bsClass={this.props.titleClassName}>{this.props.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body modalClassName={this.props.bodyClassName} style={this.props.bodyStyle}>
+        <Modal.Body bsClass={this.props.bodyClassName} style={this.props.bodyStyle}>
           {this.props.message}
         </Modal.Body>
-        <Modal.Footer modalClassName={this.props.footerClassName}>
+        <Modal.Footer bsClass={this.props.footerClassName}>
           { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{i18n.t('common:::Cancel')}</Button> : null}
           <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{i18n.t('common:::OK')}</Button>
         </Modal.Footer>

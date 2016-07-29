@@ -15,8 +15,8 @@ class CustomDialog extends Component{
 
     this.state = {
       focusOn: 'start',
-      startText: moment.tz(props.start_at, props.tzName).format(props.dateFormat),
-      endText: props.end_at && moment.tz(props.end_at, props.tzName).format(props.dateFormat),
+      startText: moment.tz(props.start_at, props.tzName).format(props.dateFormat) || '',
+      endText: props.end_at && moment.tz(props.end_at, props.tzName).format(props.dateFormat) || '',
       defaultDate: moment.tz(props.start_at, props.tzName).format(props.dateFormat),
     };
 
