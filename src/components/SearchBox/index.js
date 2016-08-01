@@ -7,12 +7,12 @@ class SearchBox extends Component {
     super(props);
 
     this.state = {
-      keyword: props.keyword || undefined
+      keyword: props.keyword
     };
 
     this.clearKeywordField = () => {
-      this.setState({keyword: undefined});
-      this.props.handleQueryChange({keyword: undefined});
+      this.setState({keyword: ''});
+      this.props.handleQueryChange({keyword: ''});
     };
 
     this.handleChange = (e) => {
@@ -46,7 +46,7 @@ class SearchBox extends Component {
           className="form-control"
           placeholder={this.props.placeholder}
           onChange={this.handleChange}
-          value={this.state.keyword}
+          value={this.state.keyword || ''}
         />
         <button type="button" className="btn form-control-feedback" onClick={this.clearKeywordField} style={closeButtonStyle}>
           <i className="fa fa-times"></i>
