@@ -25,7 +25,7 @@ class DateRange extends Component{
       showModal: false
     };
 
-    this.handleSelect = (value, e) => {
+    this.handleSelect = (e, value) => {
       const target = e.currentTarget.target;
       const range = Helpers.getUnixOffset({rangeType: target}, this.props.tzName);
       this.props.handleDateRangeChange({
