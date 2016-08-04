@@ -26,22 +26,21 @@ class DataTable extends Component {
       }
     };
 
-    // Get DataGrid Columns
-    this.getColumns = () => {
-      // select/unselect all checkbox
-      const isCheckedAll = this.props.dataSource.length !== 0 && this.props.selectedIds && this.props.selectedIds.length === this.props.dataSource.length;
-      let selectorColumn = {
-        name: 'index',
-        width: 35,
-        title: <input type="checkbox" id="select_all" onChange={this.handleCheckAll} checked={isCheckedAll}/>,
-        sortable: false,
-        style: { textAlign: 'center' },
-        render: (value, data) => {
-          return <input data-record-id={data[this.props.idProperty]} type="checkbox" checked={this.props.selectedIds.indexOf(data[this.props.idProperty]) !== -1} onChange={this.handleCheck.bind(this, data[this.props.idProperty])} />;
-        }
-      };
-      this.columns = (this.props.selectable ? [selectorColumn].concat(this.props.columns) : this.props.columns);
-      return this.columns;
+    const selectorColumn = {
+      name: 'index',
+      width: 35,
+      title: <input type="checkbox" id="select_all" onChange={this.handleCheckAll} checked={props.dataSource.length !== 0 && props.selectedIds && props.selectedIds.length === props.dataSource.length}/>,
+      sortable: false,
+      style: { textAlign: 'center' },
+      render: (value, data) => {
+        return <input data-record-id={data[props.idProperty]} type="checkbox" checked={props.selectedIds.indexOf(data[props.idProperty]) !== -1} onChange={this.handleCheck.bind(this, data[props.idProperty])} />;
+      }
+    };
+
+    this.columns = (props.selectable ? [selectorColumn].concat(props.columns) : props.columns);
+
+    this.resetColumns = (newProps) => {
+      this.columns = (newProps.selectable ? [selectorColumn].concat(newProps.columns) : newProps.columns);
     };
 
     this.handleColumnOrderChange = (index, dropIndex) => {
@@ -86,6 +85,10 @@ class DataTable extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.resetColumns(nextProps);
+  }
+
   render() {
     const pager = (<Pagination
       offset={this.props.offset}
@@ -97,7 +100,7 @@ class DataTable extends Component {
       <DataGrid
         idProperty={this.props.idProperty}
         dataSource={this.props.dataSource}
-        columns={this.getColumns()}
+        columns={this.columns}
         style={this.props.style}
         rowStyle={this.props.rowStyle}
         rowClassName={this.props.rowClassName}
