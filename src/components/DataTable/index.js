@@ -1,4 +1,3 @@
-import './hack.css';
 import map from 'lodash/collection/map';
 import pick from 'lodash/object/pick';
 import last from 'lodash/array/last';
