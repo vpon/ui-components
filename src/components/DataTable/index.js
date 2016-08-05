@@ -26,21 +26,23 @@ class DataTable extends Component {
       }
     };
 
-    const selectorColumn = {
-      name: 'index',
-      width: 35,
-      title: <input type="checkbox" id="select_all" onChange={this.handleCheckAll} checked={props.dataSource.length !== 0 && props.selectedIds && props.selectedIds.length === props.dataSource.length}/>,
-      sortable: false,
-      style: { textAlign: 'center' },
-      render: (value, data) => {
-        return <input data-record-id={data[props.idProperty]} type="checkbox" checked={props.selectedIds.indexOf(data[props.idProperty]) !== -1} onChange={this.handleCheck.bind(this, data[props.idProperty])} />;
-      }
+    this.getSelectorColumn = _props => {
+      return {
+        name: 'index',
+        width: 35,
+        title: <input type="checkbox" id="select_all" onChange={this.handleCheckAll} checked={_props.dataSource.length !== 0 && _props.selectedIds && _props.selectedIds.length === _props.dataSource.length}/>,
+        sortable: false,
+        style: { textAlign: 'center' },
+        render: (value, data) => {
+          return <input data-record-id={data[_props.idProperty]} type="checkbox" checked={_props.selectedIds.indexOf(data[_props.idProperty]) !== -1} onChange={this.handleCheck.bind(this, data[_props.idProperty])} />;
+        }
+      };
     };
 
-    this.columns = (props.selectable ? [selectorColumn].concat(props.columns) : props.columns);
+    this.columns = (props.selectable ? [this.getSelectorColumn(props)].concat(props.columns) : props.columns);
 
-    this.resetColumns = (newProps) => {
-      this.columns = (newProps.selectable ? [selectorColumn].concat(newProps.columns) : newProps.columns);
+    this.resetColumns = newProps => {
+      this.columns = (newProps.selectable ? [this.getSelectorColumn(newProps)].concat(newProps.columns) : newProps.columns);
     };
 
     this.handleColumnOrderChange = (index, dropIndex) => {
