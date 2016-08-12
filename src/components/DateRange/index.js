@@ -25,7 +25,7 @@ class DateRange extends Component{
       showModal: false
     };
 
-    this.handleSelect = (e, value) => {
+    this.handleSelect = (value, e) => {
       const target = e.currentTarget.target;
       const range = Helpers.getUnixOffset({rangeType: target}, this.props.tzName);
       this.props.handleDateRangeChange({
@@ -109,11 +109,11 @@ class DateRange extends Component{
           bsStyle="default"
           ref="dropdownButton"
           key={0}
+          disabled={this.props.disabled}
           className={this.props.className}
         >
           <Dropdown.Toggle
             className={this.props.buttonClassName}
-            disabled={this.props.disabled}
           >
             {title}
           </Dropdown.Toggle>
