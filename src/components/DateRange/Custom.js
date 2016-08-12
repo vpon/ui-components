@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import './jquery.ui.datepicker.js';
 import uniq from 'lodash/array/uniq';
 import React, { Component, PropTypes} from 'react';

@@ -1,7 +1,9 @@
+import $ from 'jquery';
 import map from 'lodash/collection/map';
 import pick from 'lodash/object/pick';
 import last from 'lodash/array/last';
 import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import DataGrid from 'react-datagrid';
 import Helpers from '../../utils/Helpers';
 import Pagination from './Pagination';
@@ -89,6 +91,26 @@ class DataTable extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.resetColumns(nextProps);
+  }
+
+  componentDidUpdate() {
+    const $scope = $(findDOMNode(this));
+    const $hScrollbar = $scope.find('.z-horizontal-scrollbar');
+    const $hScroller = $scope.find('.z-horizontal-scroller');
+    const $vScrollbar = $scope.find('.z-vertical-scrollbar');
+    const $vScroller = $scope.find('.z-vertical-scroller');
+
+    if ($hScrollbar.outerWidth(true) >= $hScroller.outerWidth(true)) {
+      $hScrollbar.css({display: 'none'});
+    }
+    if ($vScrollbar.outerHeight(true) >= $vScroller.outerHeight(true)) {
+      const $contentWrapper = $scope.find('.z-content-wrapper-fix');
+      const $lastCell = $contentWrapper.find('.z-last');
+
+      $vScrollbar.css({display: 'none'});
+      $contentWrapper.css('max-width', '100%');
+      $lastCell.css({width: $lastCell.width() + (this.props.scrollbarSize || 20)});
+    }
   }
 
   render() {
