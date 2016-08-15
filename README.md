@@ -29,31 +29,31 @@ import Helpers from 'ui-components/lib/utils/Helpers';
 import { getParamByName, stringifySort } from 'ui-components/lib/utils/Helpers';
 
 // DataTable
-import DataTable, { Pagination } from 'ui-components/lib/components/DataTable';
-import Pagination from 'ui-components/lib/components/DataTable/Pagination';
+import DataTable, { Pagination } from 'ui-components/lib/DataTable';
+import Pagination from 'ui-components/lib/DataTable/Pagination';
 
 // DateRange
-import DateRange, { DateHelpers, rangeTypes } from 'ui-components/lib/components/DateRange';
-import DateHelpers from 'ui-components/lib/components/DateRange/Helpers';
+import DateRange, { DateHelpers, rangeTypes } from 'ui-components/lib/DateRange';
+import DateHelpers from 'ui-components/lib/DateRange/Helpers';
 
 // Resizer
-import Resizer, { ResizerHelpers, HResizer, VResizer } from 'ui-components/lib/components/Resizer';
-import ResizerHelpers from 'ui-components/lib/components/Resizer/Helpers';
-import HResizer from 'ui-components/lib/components/Resizer/HResizer';
-import VResizer from 'ui-components/lib/components/Resizer/VResizer';
+import Resizer, { ResizerHelpers, HResizer, VResizer } from 'ui-components/lib/Resizer';
+import ResizerHelpers from 'ui-components/lib/Resizer/Helpers';
+import HResizer from 'ui-components/lib/Resizer/HResizer';
+import VResizer from 'ui-components/lib/Resizer/VResizer';
 
 // Breadcrumb
-import Breadcrumb, { BreadcrumbItem } from 'ui-components/lib/components/Breadcrumb';
+import Breadcrumb, { BreadcrumbItem } from 'ui-components/lib/Breadcrumb';
 
 // ActionDialog
-import ActionDialog from 'ui-components/lib/components/ActionDialog';
+import ActionDialog from 'ui-components/lib/ActionDialog';
 
 // InfoDialog
-import InfoDialog from 'ui-components/lib/components/InfoDialog';
+import InfoDialog from 'ui-components/lib/InfoDialog';
 
 // SearchBox
-import SearchBox from 'ui-components/lib/components/SearchBox';
+import SearchBox from 'ui-components/lib/SearchBox';
 
 // InvalidWarning
-import InvalidWarning from 'ui-components/lib/components/InvalidWarning';
+import InvalidWarning from 'ui-components/lib/InvalidWarning';
 ```

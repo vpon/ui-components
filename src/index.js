@@ -1,12 +1,12 @@
 import Helpers from './utils/Helpers';
-import DataTable from './components/DataTable';
-import DateRange from './components/DateRange';
-import Resizer from './components/Resizer';
-import Breadcrumb from './components/Breadcrumb';
-import ActionDialog from './components/ActionDialog';
-import InfoDialog from './components/InfoDialog';
-import SearchBox from './components/SearchBox';
-import InvalidWarning from './components/InvalidWarning';
+import DataTable from './DataTable';
+import DateRange from './DateRange';
+import Resizer from './Resizer';
+import Breadcrumb from './Breadcrumb';
+import ActionDialog from './ActionDialog';
+import InfoDialog from './InfoDialog';
+import SearchBox from './SearchBox';
+import InvalidWarning from './InvalidWarning';
 
 export default {
   Helpers: Helpers,

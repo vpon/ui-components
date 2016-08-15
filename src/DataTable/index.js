@@ -6,7 +6,7 @@ import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import createFragment from 'react-addons-create-fragment';
 import DataGrid from 'react-datagrid';
-import Helpers from '../../utils/Helpers';
+import Helpers from '../utils/Helpers';
 import Pagination from './Pagination';
 
 class DataTable extends Component {
