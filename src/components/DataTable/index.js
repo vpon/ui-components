@@ -4,6 +4,7 @@ import pick from 'lodash/object/pick';
 import last from 'lodash/array/last';
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
+import createFragment from 'react-addons-create-fragment';
 import DataGrid from 'react-datagrid';
 import Helpers from '../../utils/Helpers';
 import Pagination from './Pagination';
@@ -126,41 +127,40 @@ class DataTable extends Component {
       total={this.props.total}
       onPageChange={this.props.onPageChange}
     />);
-    let components = [
-      <DataGrid
-        idProperty={this.props.idProperty}
-        dataSource={this.props.dataSource}
-        columns={this.columns}
-        style={this.props.style}
-        rowStyle={this.props.rowStyle}
-        rowClassName={this.props.rowClassName}
-        sortInfo={this.props.sortInfo}
-        emptyText={this.props.emptyText}
-        withColumnMenu={false}
-        defaultPageSize={25}
-        selected={this.state.selected}
-        onSelectionChange={this.onSelectionChange}
-        onColumnOrderChange={this.handleColumnOrderChange}
-        onSortChange={this.handleSortChange}
-        onColumnResize={this.onColumnResize}
-        resizableColumns={this.props.resizableColumns}
-        scrollbarSize={this.props.scrollbarSize}
-        rowHeight={this.props.rowHeight}
-      />
-    ];
+    const table = (<DataGrid
+      idProperty={this.props.idProperty}
+      dataSource={this.props.dataSource}
+      columns={this.columns}
+      style={this.props.style}
+      rowStyle={this.props.rowStyle}
+      rowClassName={this.props.rowClassName}
+      sortInfo={this.props.sortInfo}
+      emptyText={this.props.emptyText}
+      withColumnMenu={false}
+      defaultPageSize={25}
+      selected={this.state.selected}
+      onSelectionChange={this.onSelectionChange}
+      onColumnOrderChange={this.handleColumnOrderChange}
+      onSortChange={this.handleSortChange}
+      onColumnResize={this.onColumnResize}
+      resizableColumns={this.props.resizableColumns}
+      scrollbarSize={this.props.scrollbarSize}
+      rowHeight={this.props.rowHeight}
+    />);
+
     // Append pager
+    let components = table;
     if (this.props.pager) {
       if (this.props.pager === 'top') {
-        components.unshift(pager);
+        components = createFragment({ pager: pager, table: table });
       } else if (this.props.pager === 'bottom') {
-        components.push(pager);
+        components = createFragment({ table: table, pager: pager });
       }
     }
 
     return (
       <div className={`datagrid-wrapper ${this.props.wrapperClassName}`}>
-        {components[0]}
-        {components[1]}
+        {components}
       </div>
     );
   }
