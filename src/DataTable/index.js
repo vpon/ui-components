@@ -17,6 +17,9 @@ class DataTable extends Component {
       selected: null
     };
 
+    // Cache as local variable
+    this.columns = props.columns;
+
     this.handleCheckAll = (e) => {
       if (props.onCheckAll) {
         props.onCheckAll(e);
@@ -29,26 +32,24 @@ class DataTable extends Component {
       }
     };
 
-    this.getSelectorColumn = _props => {
+    this.getSelectorColumn = () => {
       return {
         name: 'index',
         width: 35,
-        title: <input type="checkbox" id="select_all" onChange={this.handleCheckAll} checked={_props.dataSource.length !== 0 && _props.selectedIds && _props.selectedIds.length === _props.dataSource.length}/>,
+        title: <input type="checkbox" id="select_all" onChange={this.handleCheckAll} checked={this.props.dataSource.length !== 0 && this.props.selectedIds && this.props.selectedIds.length === this.props.dataSource.length}/>,
         sortable: false,
         style: { textAlign: 'center' },
         render: (value, data) => {
-          return <input data-record-id={data[_props.idProperty]} type="checkbox" checked={_props.selectedIds.indexOf(data[_props.idProperty]) !== -1} onChange={this.handleCheck.bind(this, data[_props.idProperty])} />;
+          return <input data-record-id={data[this.props.idProperty]} type="checkbox" checked={this.props.selectedIds.indexOf(data[this.props.idProperty]) !== -1} onChange={this.handleCheck.bind(this, data[this.props.idProperty])} />;
         }
       };
     };
 
-    this.columns = (props.selectable ? [this.getSelectorColumn(props)].concat(props.columns) : props.columns);
-
-    this.resetColumns = newProps => {
-      this.columns = (newProps.selectable ? [this.getSelectorColumn(newProps)].concat(newProps.columns) : newProps.columns);
-    };
-
     this.handleColumnOrderChange = (index, dropIndex) => {
+      if (this.props.selectable) {
+        index -= 1;
+        dropIndex -= 1;
+      }
       const col = this.columns[index];
       this.columns.splice(index, 1); // delete from index, 1 item
       this.columns.splice(dropIndex, 0, col);
@@ -90,9 +91,9 @@ class DataTable extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.resetColumns(nextProps);
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   this.resetColumns(nextProps);
+  // }
 
   componentDidUpdate() {
     const $scope = $(findDOMNode(this));
@@ -121,6 +122,7 @@ class DataTable extends Component {
   }
 
   render() {
+    const columns = this.props.selectable ? [this.getSelectorColumn()].concat(this.columns) : this.columns;
     const pager = (<Pagination
       offset={this.props.offset}
       limit={this.props.limit}
@@ -130,7 +132,7 @@ class DataTable extends Component {
     const table = (<DataGrid
       idProperty={this.props.idProperty}
       dataSource={this.props.dataSource}
-      columns={this.columns}
+      columns={columns}
       style={this.props.style}
       rowStyle={this.props.rowStyle}
       rowClassName={this.props.rowClassName}
