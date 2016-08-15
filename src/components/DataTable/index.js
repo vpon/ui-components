@@ -97,20 +97,26 @@ class DataTable extends Component {
     const $scope = $(findDOMNode(this));
     const $hScrollbar = $scope.find('.z-horizontal-scrollbar');
     const $hScroller = $scope.find('.z-horizontal-scroller');
-    const $vScrollbar = $scope.find('.z-vertical-scrollbar');
-    const $vScroller = $scope.find('.z-vertical-scroller');
 
-    if ($hScrollbar.outerWidth(true) >= $hScroller.outerWidth(true)) {
+    if ($hScrollbar.width() >= $hScroller.outerWidth(true)) {
       $hScrollbar.css({display: 'none'});
+    } else {
+      $hScrollbar.css({display: ''});
     }
-    if ($vScrollbar.outerHeight(true) >= $vScroller.outerHeight(true)) {
-      const $contentWrapper = $scope.find('.z-content-wrapper-fix');
-      const $lastCell = $contentWrapper.find('.z-last');
 
-      $vScrollbar.css({display: 'none'});
-      $contentWrapper.css('max-width', '100%');
-      $lastCell.css({width: $lastCell.width() + (this.props.scrollbarSize || 20)});
-    }
+    // const $vScrollbar = $scope.find('.z-vertical-scrollbar');
+    // const $vScroller = $scope.find('.z-vertical-scroller');
+    // const $contentWrapper = $scope.find('.z-content-wrapper-fix');
+    // const $lastCell = $contentWrapper.find('.z-last');
+    // if ($vScrollbar.outerHeight(true) >= $vScroller.outerHeight(true)) {
+    //   $vScrollbar.css({display: 'none'});
+    //   $contentWrapper.css('max-width', '100%');
+    //   $lastCell.css({width: $lastCell.width() + this.props.scrollbarSize});
+    // } else {
+    //   $vScrollbar.css({display: 'block'});
+    //   $contentWrapper.css('max-width', '100%');
+    //   $lastCell.css({width: $lastCell.width() + this.props.scrollbarSize});
+    // }
   }
 
   render() {
@@ -206,7 +212,8 @@ DataTable.defaultProps = {
   },
   wrapperClassName: '',
   idProperty: 'id',
-  emptyText: 'No records'
+  emptyText: 'No records',
+  scrollbarSize: 20
 };
 
 DataTable.Pagination = Pagination;
