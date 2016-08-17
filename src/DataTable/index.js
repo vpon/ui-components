@@ -89,36 +89,30 @@ class DataTable extends Component {
     this.onSelectionChange = (newSelectedId) => {
       this.setState({selected: newSelectedId});
     };
+
+    this.fixScrollbar = () => {
+      const $scope = $(findDOMNode(this));
+      const $hScrollbar = $scope.find('.z-horizontal-scrollbar');
+      const $hScroller = $scope.find('.z-horizontal-scroller');
+
+      if ($hScrollbar.width() >= $hScroller.outerWidth(true)) {
+        $hScrollbar.css({display: 'none'});
+      } else {
+        $hScrollbar.css({display: ''});
+      }
+
+      if (this.props.scrollbarSize == 0) {
+        $scope.find('.z-vertical-scrollbar').css({display: 'none'});
+      }
+    };
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.resetColumns(nextProps);
-  // }
+  componentDidMount() {
+    this.fixScrollbar();
+  }
 
   componentDidUpdate() {
-    const $scope = $(findDOMNode(this));
-    const $hScrollbar = $scope.find('.z-horizontal-scrollbar');
-    const $hScroller = $scope.find('.z-horizontal-scroller');
-
-    if ($hScrollbar.width() >= $hScroller.outerWidth(true)) {
-      $hScrollbar.css({display: 'none'});
-    } else {
-      $hScrollbar.css({display: ''});
-    }
-
-    // const $vScrollbar = $scope.find('.z-vertical-scrollbar');
-    // const $vScroller = $scope.find('.z-vertical-scroller');
-    // const $contentWrapper = $scope.find('.z-content-wrapper-fix');
-    // const $lastCell = $contentWrapper.find('.z-last');
-    // if ($vScrollbar.outerHeight(true) >= $vScroller.outerHeight(true)) {
-    //   $vScrollbar.css({display: 'none'});
-    //   $contentWrapper.css('max-width', '100%');
-    //   $lastCell.css({width: $lastCell.width() + this.props.scrollbarSize});
-    // } else {
-    //   $vScrollbar.css({display: 'block'});
-    //   $contentWrapper.css('max-width', '100%');
-    //   $lastCell.css({width: $lastCell.width() + this.props.scrollbarSize});
-    // }
+    this.fixScrollbar();
   }
 
   render() {

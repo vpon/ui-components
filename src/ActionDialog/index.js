@@ -67,7 +67,7 @@ class ActionDialog extends Component{
               resizableColumns={false}
               pager={false}
               style={{height: (this.props.rowHeight || 31) * pageDataSource.length + 32}}
-              scrollbarSize={2}
+              scrollbarSize={0}
               rowHeight={this.props.rowHeight}
             />
             <div className="panel-footer text-right">
