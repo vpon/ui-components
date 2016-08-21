@@ -1,9 +1,8 @@
 import isNumber from 'lodash/lang/isNumber';
 import isNaN from 'lodash/lang/isNaN';
-import React, { Component } from 'react';
+import classNames from 'classnames';
+import React, { Component, PropTypes } from 'react';
 import Button from 'react-bootstrap/lib/Button';
-
-const NO_BREAK_SPACE = '\u00a0';
 
 class Pager extends Component {
   constructor(props) {
@@ -65,15 +64,15 @@ class Pager extends Component {
       );
     }
     return (
-      <div className="datagrid-pager text-right">
+      <div className={classNames('datagrid-pager', this.props.paginationClassName)}>
         {PageSizeSelector}
-        {NO_BREAK_SPACE}
+        &nbsp;
         <Button disabled={this.props.page === this.props.minPage} onClick={this.handleClickPage.bind(this, 'prev')}><i className="fa fa-caret-left"></i></Button>
-        {NO_BREAK_SPACE}
+        &nbsp;
         <input type="text" className="form-width-xs text-center" ref="pageNoInput" value={this.state.page} onChange={this.handleEnterPage}/>
-        {NO_BREAK_SPACE}
+        &nbsp;
         of <span>{this.props.maxPage}</span>
-        {NO_BREAK_SPACE}
+        &nbsp;
         <Button disabled={this.props.page === this.props.maxPage || this.props.maxPage === 0} onClick={this.handleClickPage.bind(this, 'next')}><i className="fa fa-caret-right"></i></Button>
       </div>
     );
@@ -81,16 +80,17 @@ class Pager extends Component {
 }
 
 Pager.propTypes = {
-  page: React.PropTypes.number.isRequired,
-  pageSize: React.PropTypes.number.isRequired,
-  pageSizes: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.bool
+  page: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  pageSizes: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.bool
   ]),
-  dataSourceCount: React.PropTypes.number.isRequired,
-  minPage: React.PropTypes.number.isRequired,
-  maxPage: React.PropTypes.number.isRequired,
-  onPageChange: React.PropTypes.func.isRequired
+  dataSourceCount: PropTypes.number.isRequired,
+  minPage: PropTypes.number.isRequired,
+  maxPage: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+  paginationClassName: PropTypes.string
 };
 
 const Pagination = (props) => {
@@ -106,19 +106,21 @@ const Pagination = (props) => {
       minPage={1}
       maxPage={maxPage}
       onPageChange={props.onPageChange}
+      paginationClassName={props.paginationClassName}
     />
   );
 }
 
 Pagination.propTypes = {
-  limit: React.PropTypes.number,
-  pageSizes: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.bool
+  limit: PropTypes.number,
+  pageSizes: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.bool
   ]),
-  total: React.PropTypes.number,
-  onPageChange: React.PropTypes.func,
-  offset: React.PropTypes.number
+  total: PropTypes.number,
+  onPageChange: PropTypes.func,
+  offset: PropTypes.number,
+  paginationClassName: PropTypes.string
 };
 
 Pagination.defaultProps = {

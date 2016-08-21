@@ -2,6 +2,7 @@ import $ from 'jquery';
 import map from 'lodash/collection/map';
 import pick from 'lodash/object/pick';
 import last from 'lodash/array/last';
+import classNames from 'classnames';
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import createFragment from 'react-addons-create-fragment';
@@ -117,32 +118,37 @@ class DataTable extends Component {
 
   render() {
     const columns = this.props.selectable ? [this.getSelectorColumn()].concat(this.columns) : this.columns;
-    const pager = (<Pagination
-      offset={this.props.offset}
-      limit={this.props.limit}
-      total={this.props.total}
-      onPageChange={this.props.onPageChange}
-    />);
-    const table = (<DataGrid
-      idProperty={this.props.idProperty}
-      dataSource={this.props.dataSource}
-      columns={columns}
-      style={this.props.style}
-      rowStyle={this.props.rowStyle}
-      rowClassName={this.props.rowClassName}
-      sortInfo={this.props.sortInfo}
-      emptyText={this.props.emptyText}
-      withColumnMenu={false}
-      defaultPageSize={25}
-      selected={this.state.selected}
-      onSelectionChange={this.onSelectionChange}
-      onColumnOrderChange={this.handleColumnOrderChange}
-      onSortChange={this.handleSortChange}
-      onColumnResize={this.onColumnResize}
-      resizableColumns={this.props.resizableColumns}
-      scrollbarSize={this.props.scrollbarSize}
-      rowHeight={this.props.rowHeight}
-    />);
+    const pager = (
+      <Pagination
+        offset={this.props.offset}
+        limit={this.props.limit}
+        total={this.props.total}
+        onPageChange={this.props.onPageChange}
+        paginationClassName={this.props.paginationClassName}
+      />
+    );
+    const table = (
+      <DataGrid
+        idProperty={this.props.idProperty}
+        dataSource={this.props.dataSource}
+        columns={columns}
+        style={this.props.style}
+        rowStyle={this.props.rowStyle}
+        rowClassName={this.props.rowClassName}
+        sortInfo={this.props.sortInfo}
+        emptyText={this.props.emptyText}
+        withColumnMenu={false}
+        defaultPageSize={25}
+        selected={this.state.selected}
+        onSelectionChange={this.onSelectionChange}
+        onColumnOrderChange={this.handleColumnOrderChange}
+        onSortChange={this.handleSortChange}
+        onColumnResize={this.onColumnResize}
+        resizableColumns={this.props.resizableColumns}
+        scrollbarSize={this.props.scrollbarSize}
+        rowHeight={this.props.rowHeight}
+      />
+    );
 
     // Append pager
     let components = table;
@@ -155,7 +161,7 @@ class DataTable extends Component {
     }
 
     return (
-      <div className={`datagrid-wrapper ${this.props.wrapperClassName}`}>
+      <div className={classNames('datagrid-wrapper', this.props.wrapperClassName)}>
         {components}
       </div>
     );
@@ -196,7 +202,8 @@ DataTable.propTypes = {
   wrapperClassName: PropTypes.string, // div wrapper className
   emptyText: PropTypes.string, // set empty text
   scrollbarSize: PropTypes.number, // set vertical scroll bar width
-  rowHeight: PropTypes.number
+  rowHeight: PropTypes.number,
+  paginationClassName: PropTypes.string
 };
 
 DataTable.defaultProps = {
