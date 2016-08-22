@@ -24,7 +24,7 @@
     "moment": "^2.10.6",
     "moment-timezone": "^0.4.1",
     "react": "^15.3.0",
-    "react-bootstrap": "^0.30.0",
+    "react-bootstrap": "^0.30.3",
     "react-datagrid": "^2.1.1",
     "react-dom": "^15.3.0",
     "react-router": "^2.0.0",
