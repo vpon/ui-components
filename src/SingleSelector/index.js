@@ -14,10 +14,7 @@ class SingleSelector extends Component {
   constructor(props) {
     super(props);
 
-    this.state = assign({},
-      props.watchedStore ? props.watchedStore.getState() : {},
-      { expanded: false }
-    );
+    this.state = { expanded: false };
 
     this.radioColumn = {
       name: 'radio',
@@ -37,10 +34,6 @@ class SingleSelector extends Component {
       }
     };
 
-    this.onChange = () => {
-      this.setState(this.props.watchedStore.getState());
-    };
-
     this.handleCollapse = () => {
       this.setState({expanded: !this.state.expanded});
     };
@@ -56,20 +49,8 @@ class SingleSelector extends Component {
     };
   }
 
-  componentDidMount() {
-    if (this.props.watchedStore) {
-      this.props.watchedStore.addChangeListener(this.onChange);
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.props.watchedStore) {
-      this.props.watchedStore.removeChangeListener(this.onChange);
-    }
-  }
-
   renderSearchBar() {
-    const currentState = this.state.query.state;
+    const currentState = this.props.dataTableProps.query.state;
     const searchBox = (<SearchBox
       handleQueryChange={this.props.dataTableProps.onQueryChange}
       placeholder={this.props.searchBoxPlaceholder}
@@ -99,8 +80,8 @@ class SingleSelector extends Component {
   }
 
   render() {
-    const { columns, query, onQueryChange, keyOfDataSource, keyOfTotal, emptyText } = this.props.dataTableProps;
-    const total = get(this.state, keyOfTotal);
+    const { columns, onQueryChange, dataSource, total, emptyText,  } = this.props.dataTableProps;
+    const { offset, limit, order } = this.props.dataTableProps.query;
     const tableColumns = [this.radioColumn].concat(columns);
 
     return (
@@ -122,9 +103,9 @@ class SingleSelector extends Component {
             <DataTable
               onPageChange={onQueryChange}
               selectable={false}
-              dataSource={get(this.state, keyOfDataSource)}
+              dataSource={dataSource}
               columns={tableColumns}
-              sortInfo={Helpers.arrayifySort(query.order)}
+              sortInfo={Helpers.arrayifySort(order)}
               pager={false}
               style={{height: 31 * (total > 6 ? 6 : (total === 0 ? 1 : total)) + 32}}
               emptyText={emptyText}
@@ -134,8 +115,8 @@ class SingleSelector extends Component {
           </div>
           <div className="block-expandable__footer text-right">
             <Pagination
-              offset={query.offset}
-              limit={query.limit}
+              offset={offset}
+              limit={limit}
               total={total}
               onPageChange={onQueryChange}
             />
@@ -158,19 +139,18 @@ SingleSelector.propTypes = {
   filterByState: PropTypes.bool,
   stateItems: PropTypes.array,
   selectedItemLabel: PropTypes.string,
-  watchedStore: PropTypes.object,
   dataTableProps: PropTypes.shape({
-    query: PropTypes.shape({
-      offset: PropTypes.number,
-      limit: PropTypes.number,
-      order: PropTypes.string,
-      state: PropTypes.string
-    }),
     onQueryChange: PropTypes.func.isRequired,
-    keyOfTotal: PropTypes.string.isRequired,
-    keyOfDataSource: PropTypes.string.isRequired,
     columns: PropTypes.array.isRequired,
-    emptyText: PropTypes.string
+    emptyText: PropTypes.string,
+    dataSource: PropTypes.array.isRequired,
+    total: PropTypes.total,
+    query: PropTypes.shape({
+      order: PropTypes.string,
+      limit: PropTypes.number,
+      offset: PropTypes.number,
+      state: PropTypes.string
+    })
   })
 };
 

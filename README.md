@@ -10,7 +10,7 @@
   - [x] SearchBox
   - [x] InvalidWarning
   - [x] SingleSelector
-  - [] MultiSelector
+  - [ ] MultiSelector
 
 ## Usage
 
