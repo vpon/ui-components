@@ -2,6 +2,7 @@ import $ from 'jquery';
 import map from 'lodash/collection/map';
 import pick from 'lodash/object/pick';
 import last from 'lodash/array/last';
+import isEqual from 'lodash/lang/isEqual';
 import classNames from 'classnames';
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
@@ -110,6 +111,14 @@ class DataTable extends Component {
 
   componentDidMount() {
     this.fixScrollbar();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const oldColumnNames = map(this.columns, 'name').sort();
+    const newColumnNames = map(nextProps.columns, 'name').sort();
+    if (!isEqual(oldColumnNames, newColumnNames)) {
+      this.columns = nextProps.columns;
+    }
   }
 
   componentDidUpdate() {
