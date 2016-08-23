@@ -105,7 +105,7 @@ class SingleSelector extends Component {
               columns={tableColumns}
               sortInfo={Helpers.arrayifySort(order)}
               pager={false}
-              style={{height: 31 * (total > 6 ? 6 : (total === 0 ? 1 : total)) + 32}}
+              style={{height: 31 * (total > 6 ? 6 : (total === 0 ? 1 : total)) + 28}}
               emptyText={emptyText}
               scrollbarSize={20}
               resizableColumns={false}
