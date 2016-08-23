@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
-import assign from 'lodash/object/assign';
-import get from 'lodash/object/get';
 import find from 'lodash/collection/find';
 import DataTable, { Pagination } from '../DataTable';
 import SearchBox from '../SearchBox';
@@ -153,7 +151,6 @@ SingleSelector.propTypes = {
     })
   })
 };
-
 
 SingleSelector.defaultProps = {
   disabled: false,

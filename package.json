@@ -14,9 +14,9 @@
       "stage-0",
       "react"
     ],
-     "plugins": [
-       "add-module-exports"
-     ]
+    "plugins": [
+      "add-module-exports"
+    ]
   },
   "dependencies": {
     "i18next": "^2.0.4",
