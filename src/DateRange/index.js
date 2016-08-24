@@ -25,18 +25,18 @@ class DateRange extends Component{
       showModal: false
     };
 
-    this.handleSelect = (value, e) => {
-      const target = e.currentTarget.target;
-      const range = Helpers.getUnixOffset({rangeType: target}, this.props.tzName);
-      this.props.handleDateRangeChange({
-        rangeType: target,
-        start_at: range.start_at,
-        end_at: range.end_at
-      });
-    };
-
-    this.handleSelectCustom = (e) => {
-      this.setState({showModal: true});
+    this.handleSelect = (e) => {
+      const rangeType = (typeof(e) === 'string') ? e : e.target.value;
+      if (rangeType === 'custom') {
+        this.setState({showModal: true});
+      } else {
+        const range = Helpers.getUnixOffset({rangeType: rangeType}, this.props.tzName);
+        this.props.handleDateRangeChange({
+          rangeType: rangeType,
+          start_at: range.start_at,
+          end_at: range.end_at
+        });
+      }
     };
 
     this.handleCustomCallback = (rangeType, start_at, end_at) => {
@@ -53,41 +53,66 @@ class DateRange extends Component{
     };
   }
 
-  render() {
+  renderRangeTypeOptions() {
+    const typeOptions = this.props.rangeTypes.map((rangeType) => {
+      const humanRangeType = Helpers.humanizeDateRange({rangeType: rangeType}, this.props.tzName, this.props.dateFormat);
+      if (this.props.theme == 'select') {
+        return <option value={rangeType} key={rangeType}>{humanRangeType}</option>;
+      }
+      return <MenuItem key={rangeType} eventKey={rangeType} active={this.props.rangeType === rangeType}>{humanRangeType}</MenuItem>;
+    });
+
+    if (this.props.theme === 'select' && this.props.rangeType === 'custom' && this.props.start_at && this.props.end_at) {
+      const selectTitle = Helpers.humanizeDateRange(
+        {rangeType: this.props.rangeType, start_at: this.props.start_at, end_at: this.props.end_at},
+        this.props.tzName,
+        this.props.dateFormat
+      );
+      return [<option value='custom' disabled>{selectTitle}</option>].concat(typeOptions);
+    }
+    return typeOptions;
+  }
+
+  renderAsSelect() {
+    return (
+      <select
+        value={this.props.rangeType}
+        className={this.props.className}
+        disabled={this.props.disabled}
+        onChange={this.handleSelect}
+      >
+        {this.renderRangeTypeOptions()}
+      </select>
+    );
+  }
+
+  renderAsDropdown() {
     const value = {
       rangeType: this.props.rangeType,
       start_at: this.props.start_at,
       end_at: this.props.end_at
     };
-    const title = Helpers.humanizeDateRange(value, this.props.tzName, this.props.dateFormat);
+    return (
+      <Dropdown
+        pullRight
+        id="date-range-type-dropdown"
+        bsStyle="default"
+        disabled={this.props.disabled}
+        className={this.props.className}
+        onSelect={this.handleSelect}
+      >
+        <Dropdown.Toggle
+          className={this.props.buttonClassName}
+          title={Helpers.humanizeDateRange(value, this.props.tzName, this.props.dateFormat)}
+        />
+        <Dropdown.Menu>
+          {this.renderRangeTypeOptions()}
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  }
 
-    const options = this.props.rangeTypes.map((rangeType, i) => {
-      if (rangeType === 'custom') {
-        return (
-          <MenuItem
-            key={i}
-            eventKey={i}
-            target={rangeType}
-            active={this.props.rangeType === rangeType}
-            onSelect={this.handleSelectCustom}
-          >
-            {i18n.t('common:::dateRange::Custom')}
-          </MenuItem>
-        );
-      }
-      return (
-        <MenuItem
-          key={i}
-          eventKey={i}
-          target={rangeType}
-          active={this.props.rangeType === rangeType}
-          onSelect={this.handleSelect}
-        >
-          { Helpers.humanizeDateRange({rangeType: rangeType}, this.props.tzName, this.props.dateFormat) }
-        </MenuItem>
-      );
-    });
-
+  render() {
     let customDialog = false;
     if (this.state.showModal) {
       customDialog = (<CustomDialog
@@ -103,24 +128,7 @@ class DateRange extends Component{
     }
     return (
       <span>
-        <Dropdown
-          pullRight
-          id="date-range-type-dropdown"
-          bsStyle="default"
-          ref="dropdownButton"
-          key={0}
-          disabled={this.props.disabled}
-          className={this.props.className}
-        >
-          <Dropdown.Toggle
-            className={this.props.buttonClassName}
-          >
-            {title}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {options}
-          </Dropdown.Menu>
-        </Dropdown>
+        {this.props.theme == 'select' ? this.renderAsSelect() : this.renderAsDropdown()}
         {customDialog}
       </span>
     );
@@ -128,6 +136,7 @@ class DateRange extends Component{
 }
 
 DateRange.propTypes = {
+  theme: PropTypes.string,
   utcOffset: PropTypes.number.isRequired,
   tzName: PropTypes.string.isRequired,
   dateFormat: PropTypes.string.isRequired,
@@ -142,6 +151,7 @@ DateRange.propTypes = {
 };
 
 DateRange.defaultProps = {
+  theme: 'dropdown',
   rangeTypes: rangeTypes,
   rangeType: 'today',
   tzName: 'GMT',

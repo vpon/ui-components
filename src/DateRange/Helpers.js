@@ -63,9 +63,12 @@ export default {
     let end_at;
     switch (value.rangeType) {
     case 'custom':
-      start_at = moment.tz(value.start_at, tzName).format(dateFormat);
-      end_at = moment.tz(value.end_at, tzName).format(dateFormat);
-      return `${start_at} - ${end_at}`;
+      if (value.start_at && value.end_at) {
+        start_at = moment.tz(value.start_at, tzName).format(dateFormat);
+        end_at = moment.tz(value.end_at, tzName).format(dateFormat);
+        return `${start_at} - ${end_at}`;
+      }
+      return i18n.t('common:::dateRange::Custom');
     case 'today':
       start_at = moment.tz(tzName).format(dateFormat);
       return `${i18n.t('common:::dateRange::Today')} : ${start_at}`;
