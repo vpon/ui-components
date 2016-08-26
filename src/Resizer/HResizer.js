@@ -1,5 +1,4 @@
 // Horizontal Resizer
-import $ from 'jquery';
 import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash/function/debounce';
 

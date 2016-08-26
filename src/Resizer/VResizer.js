@@ -1,5 +1,4 @@
 // Vertical Resizer
-import $ from 'jquery';
 import React, { Component } from 'react';
 import debounce from 'lodash/function/debounce';
 

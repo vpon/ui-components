@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import React, { Component, PropTypes } from 'react';
 import isUndefined from 'lodash/lang/isUndefined';
 import debounce from 'lodash/function/debounce';

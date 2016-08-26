@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
-import i18n from 'i18next';
+import { t } from '../../utils/Helpers';
 
 // dialog for show message
 class InfoDialog extends Component{
@@ -15,8 +15,8 @@ class InfoDialog extends Component{
           {this.props.message}
         </Modal.Body>
         <Modal.Footer bsClass={this.props.footerClassName}>
-          { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{i18n.t('common:::Cancel')}</Button> : null}
-          <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{i18n.t('common:::OK')}</Button>
+          { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{t('common:::Cancel')}</Button> : null}
+          <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{t('common:::OK')}</Button>
         </Modal.Footer>
       </Modal>
     );

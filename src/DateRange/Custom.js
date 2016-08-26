@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import './jquery.ui.datepicker.js';
 import uniq from 'lodash/array/uniq';
 import React, { Component, PropTypes} from 'react';
@@ -6,7 +5,7 @@ import { findDOMNode } from 'react-dom';
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
 import moment from 'moment-timezone';
-import i18n from 'i18next';
+import { t } from '../../utils/Helpers';
 
 const NO_BREAK_SPACE = '\u00a0';
 
@@ -150,7 +149,7 @@ class CustomDialog extends Component{
     return (
       <Modal show={this.props.show} onHide={this.props.onHide} bsSize="large" id="date_range_custom_dialog" backdrop="static" animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>{i18n.t('common:::dateRange::Custom Date Range')}</Modal.Title>
+          <Modal.Title>{t('common:::dateRange::Custom Date Range')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="form-group text-center">
@@ -177,7 +176,7 @@ class CustomDialog extends Component{
           <div id="date_range_datepicker" />
         </Modal.Body>
         <Modal.Footer>
-          <Button bsStyle="primary" onClick={this.handleApply} disabled={disableSubmit}>{i18n.t('common:::Apply')}</Button>
+          <Button bsStyle="primary" onClick={this.handleApply} disabled={disableSubmit}>{t('common:::Apply')}</Button>
         </Modal.Footer>
       </Modal>
     );

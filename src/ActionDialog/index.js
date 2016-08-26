@@ -5,7 +5,6 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
 import Helpers from '../utils/Helpers';
 import DataTable, { Pagination } from '../DataTable';
-import i18n from 'i18next';
 
 // dialog for action, contain datatable
 class ActionDialog extends Component{
@@ -82,8 +81,8 @@ class ActionDialog extends Component{
           </div>
         </Modal.Body>
         <Modal.Footer bsClass={this.props.footerClassName}>
-          { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{i18n.t('common:::Cancel')}</Button> : null}
-          <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{i18n.t('common:::OK')}</Button>
+          { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{Helpers.t('common:::Cancel')}</Button> : null}
+          <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{Helpers.t('common:::OK')}</Button>
         </Modal.Footer>
       </Modal>
     );

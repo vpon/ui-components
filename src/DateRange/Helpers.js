@@ -1,5 +1,5 @@
 import moment from 'moment-timezone';
-import i18n from 'i18next';
+import { t } from '../../utils/Helpers';
 
 moment.tz.link('Asia/Chongqing|Asia/Beijing');
 
@@ -68,27 +68,27 @@ export default {
         end_at = moment.tz(value.end_at, tzName).format(dateFormat);
         return `${start_at} - ${end_at}`;
       }
-      return i18n.t('common:::dateRange::Custom');
+      return t('common:::dateRange::Custom');
     case 'today':
       start_at = moment.tz(tzName).format(dateFormat);
-      return `${i18n.t('common:::dateRange::Today')} : ${start_at}`;
+      return `${t('common:::dateRange::Today')} : ${start_at}`;
     case 'yesterday':
       start_at = moment.tz(tzName).subtract(1, 'days').format(dateFormat);
-      return `${i18n.t('common:::dateRange::Yesterday')} : ${start_at}`;
+      return `${t('common:::dateRange::Yesterday')} : ${start_at}`;
     case 'this_week':
-      return i18n.t('common:::dateRange::This Week (Sun - Today)');
+      return t('common:::dateRange::This Week (Sun - Today)');
     case 'last_week':
-      return i18n.t('common:::dateRange::Last Week (Sun - Sat)');
+      return t('common:::dateRange::Last Week (Sun - Sat)');
     case 'last7':
-      return i18n.t('common:::dateRange::Last 7 Days');
+      return t('common:::dateRange::Last 7 Days');
     case 'last14':
-      return i18n.t('common:::dateRange::Last 14 Days');
+      return t('common:::dateRange::Last 14 Days');
     case 'this_month':
-      return i18n.t('common:::dateRange::This Month');
+      return t('common:::dateRange::This Month');
     case 'last_month':
-      return i18n.t('common:::dateRange::Last Month');
+      return t('common:::dateRange::Last Month');
     case 'all_time':
-      return i18n.t('common:::dateRange::All Time');
+      return t('common:::dateRange::All Time');
     default:
     }
   }

@@ -91,6 +91,7 @@ class DateRange extends Component{
       start_at: this.props.start_at,
       end_at: this.props.end_at
     };
+
     return (
       <Dropdown
         pullRight
