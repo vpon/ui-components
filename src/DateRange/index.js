@@ -3,7 +3,6 @@ import Dropdown from 'react-bootstrap/lib/Dropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import Helpers from './Helpers';
 import CustomDialog from './Custom';
-import i18n from 'i18next';
 
 const rangeTypes = [
   'custom',
@@ -56,7 +55,7 @@ class DateRange extends Component{
   renderRangeTypeOptions() {
     const typeOptions = this.props.rangeTypes.map((rangeType) => {
       const humanRangeType = Helpers.humanizeDateRange({rangeType: rangeType}, this.props.tzName, this.props.dateFormat);
-      if (this.props.theme == 'select') {
+      if (this.props.theme === 'select') {
         return <option value={rangeType} key={rangeType}>{humanRangeType}</option>;
       }
       return <MenuItem key={rangeType} eventKey={rangeType} active={this.props.rangeType === rangeType}>{humanRangeType}</MenuItem>;
@@ -128,7 +127,7 @@ class DateRange extends Component{
     }
     return (
       <span>
-        {this.props.theme == 'select' ? this.renderAsSelect() : this.renderAsDropdown()}
+        {this.props.theme === 'select' ? this.renderAsSelect() : this.renderAsDropdown()}
         {customDialog}
       </span>
     );

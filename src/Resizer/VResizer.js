@@ -1,5 +1,6 @@
 // Vertical Resizer
-import React, { Component } from 'react';// eslint-disable-line no-unused-vars
+import $ from 'jquery';
+import React, { Component } from 'react';
 import debounce from 'lodash/function/debounce';
 
 class VResizer extends Component {

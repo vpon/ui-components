@@ -103,7 +103,7 @@ class DataTable extends Component {
         $hScrollbar.css({display: ''});
       }
 
-      if (this.props.scrollbarSize == 0) {
+      if (this.props.scrollbarSize === 0) {
         $scope.find('.z-vertical-scrollbar').css({display: 'none'});
       }
     };
