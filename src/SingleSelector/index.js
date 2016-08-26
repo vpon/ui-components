@@ -6,7 +6,6 @@ import SearchBox from '../SearchBox';
 import Helpers from '../utils/Helpers';
 import Dropdown from 'react-bootstrap/lib/Dropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
-import i18n from 'i18next';
 
 class SingleSelector extends Component {
   constructor(props) {
@@ -55,11 +54,11 @@ class SingleSelector extends Component {
     />);
     const stateFilter = (
       <Dropdown className="input-group-btn" id="single-selector-state-filter">
-        <Dropdown.Toggle title={i18n.t(find(this.props.stateItems, 'key', currentState)['value'])} />
+        <Dropdown.Toggle title={Helpers.t(find(this.props.stateItems, 'key', currentState)['value'])} />
         <Dropdown.Menu onSelect={this.handleStateChange}>
           {this.props.stateItems.map(item => {
             return (
-             <MenuItem eventKey={item.key} key={item.key} active={currentState === item.key}>{i18n.t(item.value)}</MenuItem>
+             <MenuItem eventKey={item.key} key={item.key} active={currentState === item.key}>{Helpers.t(item.value)}</MenuItem>
             );
           })}
         </Dropdown.Menu>
