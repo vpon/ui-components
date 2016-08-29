@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
-import { t } from '../../utils/Helpers';
+import { t } from '../utils/Helpers';
 
 // dialog for show message
 class InfoDialog extends Component{

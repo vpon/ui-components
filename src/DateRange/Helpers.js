@@ -1,5 +1,5 @@
 import moment from 'moment-timezone';
-import { t } from '../../utils/Helpers';
+import { t } from '../utils/Helpers';
 
 moment.tz.link('Asia/Chongqing|Asia/Beijing');
 

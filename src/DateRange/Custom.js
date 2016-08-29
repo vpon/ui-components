@@ -5,7 +5,7 @@ import { findDOMNode } from 'react-dom';
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
 import moment from 'moment-timezone';
-import { t } from '../../utils/Helpers';
+import { t } from '../utils/Helpers';
 
 const NO_BREAK_SPACE = '\u00a0';
 
