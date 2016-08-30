@@ -17,7 +17,7 @@ class SingleSelector extends Component {
       name: 'radio',
       title: ' ',
       sortable: false,
-      width: 35,
+      width: 30,
       style: { textAlign: 'center' },
       render: (value, data) => {
         return (
@@ -78,7 +78,7 @@ class SingleSelector extends Component {
 
   render() {
     const { columns, onQueryChange, dataSource, total, emptyText,  } = this.props.dataTableProps;
-    const { offset, limit, order } = this.props.dataTableProps.query;
+    const { order } = this.props.dataTableProps.query;
     const tableColumns = [this.radioColumn].concat(columns);
 
     return (
@@ -94,8 +94,7 @@ class SingleSelector extends Component {
           &nbsp;
           {this.props.title}
           {this.renderSearchBar()}
-          {this.props.selectedItemLabel}
-          <hr/>
+          <p><span className="small">{this.props.selectedItemLabel}</span></p>
           <div className="table-bordered hack-no-horizontal-scrollbar">
             <DataTable
               onPageChange={onQueryChange}
@@ -104,18 +103,10 @@ class SingleSelector extends Component {
               columns={tableColumns}
               sortInfo={Helpers.arrayifySort(order)}
               pager={false}
-              style={{height: 31 * (total > 6 ? 6 : (total === 0 ? 1 : total)) + 28}}
+              style={{height: 30 * (total > 10 ? 10 : (total === 0 ? 1 : total)) + 28}}
               emptyText={emptyText}
               scrollbarSize={20}
               resizableColumns={false}
-            />
-          </div>
-          <div className="block-expandable__footer text-right">
-            <Pagination
-              offset={offset}
-              limit={limit}
-              total={total}
-              onPageChange={onQueryChange}
             />
           </div>
         </div>
@@ -144,8 +135,6 @@ SingleSelector.propTypes = {
     total: PropTypes.total,
     query: PropTypes.shape({
       order: PropTypes.string,
-      limit: PropTypes.number,
-      offset: PropTypes.number,
       state: PropTypes.string
     })
   })

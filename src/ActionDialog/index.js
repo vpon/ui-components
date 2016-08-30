@@ -65,7 +65,7 @@ class ActionDialog extends Component{
               selectable={false}
               resizableColumns={false}
               pager={false}
-              style={{height: (this.props.rowHeight || 31) * pageDataSource.length + 32}}
+              style={{height: (this.props.rowHeight || 30) * pageDataSource.length + 28}}
               scrollbarSize={0}
               rowHeight={this.props.rowHeight}
             />

@@ -36,7 +36,7 @@ class DataTable extends Component {
     this.getSelectorColumn = () => {
       return {
         name: 'index',
-        width: 35,
+        width: 30,
         title: <input type="checkbox" id="select_all" onChange={this.handleCheckAll} checked={this.props.dataSource.length !== 0 && this.props.selectedIds && this.props.selectedIds.length === this.props.dataSource.length}/>,
         sortable: false,
         style: { textAlign: 'center' },
@@ -224,7 +224,8 @@ DataTable.defaultProps = {
   wrapperClassName: '',
   idProperty: 'id',
   emptyText: 'No records',
-  scrollbarSize: 20
+  scrollbarSize: 20,
+  rowHeight: 30
 };
 
 DataTable.Pagination = Pagination;
