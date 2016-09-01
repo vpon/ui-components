@@ -10,7 +10,7 @@
   - [x] SearchBox
   - [x] InvalidWarning
   - [x] SingleSelector
-  - [ ] MultiSelector
+  - [x] MultiSelector
 
 ## Usage
 
@@ -61,4 +61,7 @@ import InvalidWarning from 'ui-components/lib/InvalidWarning';
 
 // SingleSelector
 import SingleSelector from 'ui-components/lib/SingleSelector';
+
+// MultiSelector
+import MultiSelector from 'ui-components/lib/MultiSelector';
 ```
