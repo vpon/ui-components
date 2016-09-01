@@ -118,7 +118,7 @@ SelectedList.propTypes = {
   title: PropTypes.string.isRequired,
   inheritable: PropTypes.bool,
   selectedItems: PropTypes.array.isRequired,
-  inheritedItems: PropTypes.array.isRequired,
+  inheritedItems: PropTypes.array,
   onChange: PropTypes.func.isRequired
 };
 

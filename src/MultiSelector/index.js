@@ -45,7 +45,7 @@ MultiSelector.propTypes = {
   inheritable: PropTypes.bool,
   selectedItems: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
-  inheritedItems: PropTypes.array.isRequired
+  inheritedItems: PropTypes.array
 };
 
 MultiSelector.defaultProps = {

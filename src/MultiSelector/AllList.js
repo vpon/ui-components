@@ -135,7 +135,7 @@ AllList.propTypes = {
   listingItems: PropTypes.array.isRequired,
   selectedItems: PropTypes.array.isRequired,
   allItems: PropTypes.array.isRequired,
-  inheritedItems: PropTypes.array.isRequired,
+  inheritedItems: PropTypes.array,
   onChange: PropTypes.func.isRequired,
   dataTableProps: PropTypes.shape({
     onQueryChange: PropTypes.func.isRequired,
