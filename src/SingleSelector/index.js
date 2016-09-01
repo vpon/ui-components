@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import find from 'lodash/collection/find';
-import DataTable, { Pagination } from '../DataTable';
+import DataTable from '../DataTable';
 import SearchBox from '../SearchBox';
 import Helpers from '../utils/Helpers';
 import Dropdown from 'react-bootstrap/lib/Dropdown';
