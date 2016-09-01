@@ -111,7 +111,7 @@ class AllList extends Component {
             onPageChange={onQueryChange}
             selectable={false}
             resizableColumns={false}
-            style={{height: 483 - 54 - 31 - 55}}
+            style={{height: 30 * 10 + 28}}
             wrapperClassName="table-bordered"
           />
         </div>
