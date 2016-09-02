@@ -8,6 +8,7 @@ import InfoDialog from './InfoDialog';
 import SearchBox from './SearchBox';
 import InvalidWarning from './InvalidWarning';
 import SingleSelector from './SingleSelector';
+import MultiSelector from './MultiSelector';
 
 export default {
   Helpers: Helpers,
@@ -19,5 +20,6 @@ export default {
   InfoDialog: InfoDialog,
   SearchBox: SearchBox,
   InvalidWarning: InvalidWarning,
-  SingleSelector: SingleSelector
+  SingleSelector: SingleSelector,
+  MultiSelector: MultiSelector
 };

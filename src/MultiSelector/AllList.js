@@ -79,7 +79,7 @@ class AllList extends Component {
       );
     }
 
-    const parentName = get(find(this.props.allItem, i =>{ return i.id == parentId }), 'parent_name')
+    const parentName = get(find(this.props.allItems, i =>{ return i.id == parentId }), 'name')
     return (
       <ol className="breadcrumb">
         <li className="active bc__home" title="home">
