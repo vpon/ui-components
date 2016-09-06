@@ -71,7 +71,7 @@ class SelectedList extends Component {
       <div className={classNames('callout text-hidden', {'callout-success text-success': !hasChildren, 'callout-default': hasChildren })} key={item.id}>
         {inheritedItem ? inheritLabel : this.renderRemoveBtn(item.id)}
         {item.name}
-        {hasChildren && this.renderSubItems(item, inheritedItem)}
+        {hasChildren && !(inheritedItem && isEmpty(inheritedItem.children)) && this.renderSubItems(item, inheritedItem)}
       </div>
     );
   }
@@ -85,8 +85,8 @@ class SelectedList extends Component {
 
   render() {
     let allSelectedItems = cloneDeep(this.props.selectedItems);
-    const inheritedItems = cloneDeep(this.props.inheritedItems);
     if (this.props.inheritable) {
+      const inheritedItems = cloneDeep(this.props.inheritedItems);
       allSelectedItems = uniqBy(inheritedItems.concat(allSelectedItems), 'id');
       this.props.selectedItems.forEach(item => {
         const selectedItem = find(allSelectedItems, i => { return i.id == item.id; });
@@ -120,6 +120,10 @@ SelectedList.propTypes = {
   selectedItems: PropTypes.array.isRequired,
   inheritedItems: PropTypes.array,
   onChange: PropTypes.func.isRequired
+};
+
+SelectedList.defaultProps = {
+  inheritedItems: []
 };
 
 export default SelectedList;
