@@ -102,7 +102,7 @@ class SelectedList extends Component {
       <div className="panel panel-default pick-panel col-xs-6">
         <div className="panel-heading">
           <button type="button" className="btn btn-default btn-sm pull-right" onClick={this.handleRemoveAll}>
-            {t('placement:::form::category::Remove All')}
+            {this.props.removeAllLabel}
           </button>
           <strong>{this.props.title}</strong>
         </div>
@@ -116,6 +116,7 @@ class SelectedList extends Component {
 
 SelectedList.propTypes = {
   title: PropTypes.string.isRequired,
+  removeAllLabel: PropTypes.string.isRequired,
   inheritable: PropTypes.bool,
   selectedItems: PropTypes.array.isRequired,
   inheritedItems: PropTypes.array,

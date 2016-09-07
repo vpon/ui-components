@@ -7,6 +7,7 @@ const MultiSelector = (props) => {
     <div className="row-gapless">
       <AllList
         title={props.allListTitle}
+        selectable={props.selectable}
         searchBoxPlaceholder={props.searchBoxPlaceholder}
         inheritable={props.inheritable}
         listingItems={props.listingItems}
@@ -18,6 +19,7 @@ const MultiSelector = (props) => {
       />
       <SelectedList
         title={props.selectedListTitle}
+        removeAllLabel={props.removeAllLabel}
         inheritable={props.inheritable}
         selectedItems={props.selectedItems}
         inheritedItems={props.inheritedItems}
@@ -30,6 +32,7 @@ const MultiSelector = (props) => {
 MultiSelector.propTypes = {
   // All list props
   allListTitle: PropTypes.string.isRequired,
+  selectable: PropTypes.bool,
   searchBoxPlaceholder: PropTypes.string.isRequired,
   listingItems: PropTypes.array.isRequired,
   allItems: PropTypes.array.isRequired,
@@ -41,6 +44,7 @@ MultiSelector.propTypes = {
   }),
   // Selected list props
   selectedListTitle: PropTypes.string.isRequired,
+  removeAllLabel: PropTypes.string.isRequired,
   // Common props
   inheritable: PropTypes.bool,
   selectedItems: PropTypes.array.isRequired,
@@ -49,6 +53,7 @@ MultiSelector.propTypes = {
 };
 
 MultiSelector.defaultProps = {
+  selectable: true,
   inheritable: false
 };
 

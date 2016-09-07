@@ -93,7 +93,7 @@ class AllList extends Component {
 
   render() {
     const { onQueryChange, columns, total, query } = this.props.dataTableProps;
-    const allColumns = this.props.dataTableProps.parent_id ? columns : [this.selectorColumn].concat(columns);
+    const allColumns = this.props.selectable ? [this.selectorColumn].concat(columns) : columns;
 
     return (
       <div className="panel panel-default pick-panel col-xs-6">
@@ -131,6 +131,7 @@ class AllList extends Component {
 
 AllList.propTypes = {
   title: PropTypes.string.isRequired,
+  selectable: PropTypes.bool,
   searchBoxPlaceholder: PropTypes.string.isRequired,
   listingItems: PropTypes.array.isRequired,
   selectedItems: PropTypes.array.isRequired,
