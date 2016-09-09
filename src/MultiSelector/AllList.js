@@ -57,7 +57,7 @@ class AllList extends Component {
     this.selectorColumn = {
       name: 'flag',
       title: <i className='fa fa-check-circle fa-lg text-success' />,
-      width: 40,
+      width: 30,
       sortable: false,
       style: { textAlign: 'center' },
       render: (value, data) => {
