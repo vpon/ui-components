@@ -24,6 +24,7 @@ const MultiSelector = (props) => {
         selectedItems={props.selectedItems}
         inheritedItems={props.inheritedItems}
         onChange={props.onChange}
+        inheritText={props.inheritText}
       />
     </div>
   );
@@ -49,7 +50,8 @@ MultiSelector.propTypes = {
   inheritable: PropTypes.bool,
   selectedItems: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
-  inheritedItems: PropTypes.array
+  inheritedItems: PropTypes.array,
+  inheritText: PropTypes.string
 };
 
 MultiSelector.defaultProps = {

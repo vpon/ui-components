@@ -38,7 +38,6 @@
     "eslint-plugin-react": "^6.1.2"
   },
   "peerDependencies": {
-    "i18next": ">=2.0.4",
     "react": "^15.3.0",
     "moment": "^2.10.6",
     "moment-timezone": "^0.4.1",

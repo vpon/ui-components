@@ -54,11 +54,11 @@ class SingleSelector extends Component {
     />);
     const stateFilter = (
       <Dropdown className="input-group-btn" id="single-selector-state-filter">
-        <Dropdown.Toggle title={Helpers.t(find(this.props.stateItems, 'key', currentState)['value'])} />
+        <Dropdown.Toggle title={find(this.props.stateItems, 'key', currentState)['value']} />
         <Dropdown.Menu onSelect={this.handleStateChange}>
           {this.props.stateItems.map(item => {
             return (
-             <MenuItem eventKey={item.key} key={item.key} active={currentState === item.key}>{Helpers.t(item.value)}</MenuItem>
+             <MenuItem eventKey={item.key} key={item.key} active={currentState === item.key}>{item.value}</MenuItem>
             );
           })}
         </Dropdown.Menu>
@@ -144,9 +144,9 @@ SingleSelector.defaultProps = {
   disabled: false,
   filterByState: false,
   stateItems: [
-    {key: '0,1', value: 'common:::state::All'},
-    {key: '0', value: 'common:::state::Active'},
-    {key: '1', value: 'common:::state::Inactive'}
+    {key: '0,1', value: 'All'},
+    {key: '0', value: 'Active'},
+    {key: '1', value: 'Inactive'}
   ]
 };
 

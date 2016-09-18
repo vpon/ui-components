@@ -5,7 +5,6 @@ import isEmpty from 'lodash/lang/isEmpty';
 import map from 'lodash/collection/map';
 import assign from 'lodash/object/assign';
 import compact from 'lodash/array/compact';
-import i18n from 'i18next';
 
 export default {
   getParamByName(name) {
@@ -95,9 +94,5 @@ export default {
       newObj[key] = this.filterInt(obj[key], 10) || obj[key];
       return newObj;
     });
-  },
-
-  t(key) {
-    return i18n.t(key, { keySeparator: '::', nsSeparator: ':::' });
   }
 };

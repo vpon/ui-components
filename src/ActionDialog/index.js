@@ -81,8 +81,8 @@ class ActionDialog extends Component{
           </div>
         </Modal.Body>
         <Modal.Footer bsClass={this.props.footerClassName}>
-          { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{Helpers.t('common:::Cancel')}</Button> : null}
-          <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{Helpers.t('common:::OK')}</Button>
+          { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{this.props.cancelText}</Button> : null}
+          <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{this.props.submitText}</Button>
         </Modal.Footer>
       </Modal>
     );
@@ -100,6 +100,8 @@ ActionDialog.propTypes = {
   dataSource: PropTypes.array.isRequired, // Data
   onHide: PropTypes.func.isRequired, // Function for close dialog
   onSubmit: PropTypes.func.isRequired, // Function for click OK button
+  cancelText: PropTypes.string.isRequired,
+  submitText: PropTypes.string.isRequired,
   dialogClassName: PropTypes.string, // Modal dialogClassName
   bodyStyle: PropTypes.object, // Modal body style
   hasCancelButton: PropTypes.bool, // Set to false to remove Cancel Button

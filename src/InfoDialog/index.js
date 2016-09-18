@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
-import { t } from '../utils/Helpers';
 
 // dialog for show message
 class InfoDialog extends Component{
@@ -15,8 +14,8 @@ class InfoDialog extends Component{
           {this.props.message}
         </Modal.Body>
         <Modal.Footer bsClass={this.props.footerClassName}>
-          { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{t('common:::Cancel')}</Button> : null}
-          <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{t('common:::OK')}</Button>
+          { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{this.props.cancelText}</Button> : null}
+          <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{this.props.submitText}</Button>
         </Modal.Footer>
       </Modal>
     );
@@ -29,6 +28,7 @@ InfoDialog.propTypes = {
   message: PropTypes.node.isRequired, // Modal body message
   onHide: PropTypes.func.isRequired, // Function for close dialog
   onSubmit: PropTypes.func.isRequired, // Fuction for dialog submit
+  submitText: PropTypes.string.isRequired,
   dialogClassName: PropTypes.string, // Modal dialogClassName
   bodyStyle: PropTypes.object, // Modal body style
   hasCancelButton: PropTypes.bool, // Set to false to remove Cancel Button
@@ -36,7 +36,8 @@ InfoDialog.propTypes = {
   titleClassName: PropTypes.string,
   bodyClassName: PropTypes.string,
   footerClassName: PropTypes.string,
-  bsSize: PropTypes.string
+  bsSize: PropTypes.string,
+  cancelText: PropTypes.string
 };
 
 InfoDialog.defaultProps = {
@@ -46,7 +47,8 @@ InfoDialog.defaultProps = {
   titleClassName: 'modal-title',
   bodyClassName: 'modal-body',
   footerClassName: 'modal-footer',
-  bsSize: 'small'
+  bsSize: 'small',
+  cancelText: 'Cancel'
 };
 
 export default InfoDialog;

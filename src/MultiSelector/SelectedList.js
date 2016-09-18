@@ -5,7 +5,6 @@ import isEmpty from 'lodash/lang/isEmpty';
 import cloneDeep from 'lodash/lang/cloneDeep';
 import uniqBy from 'lodash.uniqby';
 import React, { Component, PropTypes } from 'react';
-import { t } from '../utils/Helpers';;
 import classNames from 'classnames';
 
 class SelectedList extends Component {
@@ -65,7 +64,7 @@ class SelectedList extends Component {
 
   renderItem(item, inheritedItem) {
     const hasChildren = !isEmpty(item.children);
-    const inheritLabel = <span className={classNames('label pull-right', {'label-success': !hasChildren, 'label-default': hasChildren})}>{t('placement:::form::category::Placement Group-Level Setting')}</span>;
+    const inheritLabel = <span className={classNames('label pull-right', {'label-success': !hasChildren, 'label-default': hasChildren})}>{this.props.inheritText}</span>;
 
     return (
       <div className={classNames('callout text-hidden', {'callout-success text-success': !hasChildren, 'callout-default': hasChildren })} key={item.id}>
@@ -117,14 +116,16 @@ class SelectedList extends Component {
 SelectedList.propTypes = {
   title: PropTypes.string.isRequired,
   removeAllLabel: PropTypes.string.isRequired,
-  inheritable: PropTypes.bool,
   selectedItems: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
   inheritedItems: PropTypes.array,
-  onChange: PropTypes.func.isRequired
+  inheritable: PropTypes.bool,
+  inheritText: PropTypes.string
 };
 
 SelectedList.defaultProps = {
-  inheritedItems: []
+  inheritedItems: [],
+  inheritText: 'Placement Group-Level Setting'
 };
 
 export default SelectedList;

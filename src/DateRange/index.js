@@ -54,7 +54,7 @@ class DateRange extends Component{
 
   renderRangeTypeOptions() {
     const typeOptions = this.props.rangeTypes.map((rangeType) => {
-      const humanRangeType = Helpers.humanizeDateRange({rangeType: rangeType}, this.props.tzName, this.props.dateFormat);
+      const humanRangeType = Helpers.humanizeDateRange({rangeType: rangeType}, this.props.tzName, this.props.dateFormat, this.props.optionsText);
       if (this.props.theme === 'select') {
         return <option value={rangeType} key={rangeType}>{humanRangeType}</option>;
       }
@@ -65,7 +65,8 @@ class DateRange extends Component{
       const selectTitle = Helpers.humanizeDateRange(
         {rangeType: this.props.rangeType, start_at: this.props.start_at, end_at: this.props.end_at},
         this.props.tzName,
-        this.props.dateFormat
+        this.props.dateFormat,
+        this.props.optionsText
       );
       return [<option value='custom' disabled>{selectTitle}</option>].concat(typeOptions);
     }
@@ -103,7 +104,7 @@ class DateRange extends Component{
       >
         <Dropdown.Toggle
           className={this.props.buttonClassName}
-          title={Helpers.humanizeDateRange(value, this.props.tzName, this.props.dateFormat)}
+          title={Helpers.humanizeDateRange(value, this.props.tzName, this.props.dateFormat, this.props.optionsText)}
         />
         <Dropdown.Menu>
           {this.renderRangeTypeOptions()}
@@ -124,6 +125,8 @@ class DateRange extends Component{
         onSubmit={this.handleCustomCallback}
         start_at={this.props.rangeType === 'custom' ? this.props.start_at : undefined}
         end_at={this.props.rangeType === 'custom' ? this.props.end_at : undefined}
+        title={this.props.customTitle}
+        applyText={this.props.customApplyText}
       />);
     }
     return (
@@ -141,6 +144,9 @@ DateRange.propTypes = {
   tzName: PropTypes.string.isRequired,
   dateFormat: PropTypes.string.isRequired,
   rangeType: PropTypes.string.isRequired,
+  customTitle: PropTypes.string.isRequired,
+  customApplyText: PropTypes.string.isRequired,
+  optionsText: PropTypes.object.isRequired,
   rangeTypes: PropTypes.array,
   start_at: PropTypes.number,
   end_at: PropTypes.number,

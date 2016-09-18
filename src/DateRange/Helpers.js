@@ -1,5 +1,4 @@
 import moment from 'moment-timezone';
-import { t } from '../utils/Helpers';
 
 moment.tz.link('Asia/Chongqing|Asia/Beijing');
 
@@ -58,7 +57,7 @@ export default {
     }
   },
 
-  humanizeDateRange(value, tzName, dateFormat) {
+  humanizeDateRange(value, tzName, dateFormat, optionsText) {
     let start_at;
     let end_at;
     switch (value.rangeType) {
@@ -68,27 +67,27 @@ export default {
         end_at = moment.tz(value.end_at, tzName).format(dateFormat);
         return `${start_at} - ${end_at}`;
       }
-      return t('common:::dateRange::Custom');
+      return optionsText['custom'];
     case 'today':
       start_at = moment.tz(tzName).format(dateFormat);
-      return `${t('common:::dateRange::Today')} : ${start_at}`;
+      return `${optionsText['today']} : ${start_at}`;
     case 'yesterday':
       start_at = moment.tz(tzName).subtract(1, 'days').format(dateFormat);
-      return `${t('common:::dateRange::Yesterday')} : ${start_at}`;
+      return `${optionsText['yesterday']} : ${start_at}`;
     case 'this_week':
-      return t('common:::dateRange::This Week (Sun - Today)');
+      return optionsText['this_week'];
     case 'last_week':
-      return t('common:::dateRange::Last Week (Sun - Sat)');
+      return optionsText['last_week'];
     case 'last7':
-      return t('common:::dateRange::Last 7 Days');
+      return optionsText['last7'];
     case 'last14':
-      return t('common:::dateRange::Last 14 Days');
+      return optionsText['last14'];
     case 'this_month':
-      return t('common:::dateRange::This Month');
+      return optionsText['this_month'];
     case 'last_month':
-      return t('common:::dateRange::Last Month');
+      return optionsText['last_month'];
     case 'all_time':
-      return t('common:::dateRange::All Time');
+      return optionsText['all_time'];
     default:
     }
   }
