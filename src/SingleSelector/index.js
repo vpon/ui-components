@@ -51,6 +51,7 @@ class SingleSelector extends Component {
     const searchBox = (<SearchBox
       handleQueryChange={this.props.dataTableProps.onQueryChange}
       placeholder={this.props.searchBoxPlaceholder}
+      keyword={this.props.dataTableProps.query.keyword}
     />);
     const stateFilter = (
       <Dropdown className="input-group-btn" id="single-selector-state-filter">
@@ -135,7 +136,8 @@ SingleSelector.propTypes = {
     total: PropTypes.total,
     query: PropTypes.shape({
       order: PropTypes.string,
-      state: PropTypes.string
+      state: PropTypes.string,
+      keyword: PropTypes.string
     })
   })
 };

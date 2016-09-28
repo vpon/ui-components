@@ -99,7 +99,11 @@ class AllList extends Component {
       <div className="panel panel-default pick-panel col-xs-6">
         <div className="panel-heading"><strong>{this.props.title}</strong></div>
         <div className="panel-body">
-          <SearchBox handleQueryChange={onQueryChange} placeholder={this.props.searchBoxPlaceholder} />
+          <SearchBox
+            handleQueryChange={onQueryChange}
+            placeholder={this.props.searchBoxPlaceholder}
+            keyword={query.keyword}
+          />
         </div>
         {this.renderBreadcrumb()}
         <div className="items-to-pick">
