@@ -6,6 +6,7 @@ import SearchBox from '../SearchBox';
 import Helpers from '../utils/Helpers';
 import Dropdown from 'react-bootstrap/lib/Dropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
+import Button from 'react-bootstrap/lib/Button';
 
 class SingleSelector extends Component {
   constructor(props) {
@@ -81,17 +82,18 @@ class SingleSelector extends Component {
     const { columns, onQueryChange, dataSource, total, emptyText,  } = this.props.dataTableProps;
     const { order } = this.props.dataTableProps.query;
     const tableColumns = [this.radioColumn].concat(columns);
+    const { warpperClassName } = this.props;
 
     return (
       <span>
-        <div className={classNames('input-group', 'form-width-md', {'hidden': this.state.expanded})}>
+        <div className={classNames('input-group', warpperClassName, {'hidden': this.state.expanded})}>
           <span className="input-group-btn">
-            <button type="button" className="btn btn-default" disabled={this.props.disabled} onClick={this.handleCollapse}><i className="fa fa-plus"></i></button>
+            <Button disabled={this.props.disabled} onClick={this.handleCollapse}><i className="fa fa-plus"></i></Button>
           </span>
           <input className="form-control" type="text" disabled placeholder={this.props.selectedItemLabel} />
         </div>
-        <div className={classNames('block', 'block-expandable', 'form-width-md', {'hidden': !this.state.expanded})}>
-          <button type="button" className="btn btn-default" onClick={this.handleCollapse}><i className="fa fa-minus"></i></button>
+        <div className={classNames('block', 'block-expandable', warpperClassName, {'hidden': !this.state.expanded})}>
+          <Button onClick={this.handleCollapse}><i className="fa fa-minus"></i></Button>
           &nbsp;
           {this.props.title}
           {this.renderSearchBar()}
@@ -110,6 +112,7 @@ class SingleSelector extends Component {
               resizableColumns={false}
             />
           </div>
+          {this.props.children}
         </div>
       </span>
     );
@@ -117,6 +120,7 @@ class SingleSelector extends Component {
 }
 
 SingleSelector.propTypes = {
+  warpperClassName: PropTypes.string,
   disabled: PropTypes.bool,
   selectedId: PropTypes.oneOfType([
     PropTypes.string,
@@ -143,6 +147,7 @@ SingleSelector.propTypes = {
 };
 
 SingleSelector.defaultProps = {
+  warpperClassName: 'form-width-md',
   disabled: false,
   filterByState: false,
   stateItems: [
