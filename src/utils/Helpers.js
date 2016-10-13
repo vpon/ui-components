@@ -78,7 +78,7 @@ export default {
     if (isNull(num)) {
       return currency + '0.00';
     }
-    return currency + num;
+    return num;
   },
 
   filterInt(value) {
