@@ -6,6 +6,7 @@ const MultiSelector = (props) => {
   return (
     <div className="row-gapless">
       <AllList
+        showBreadCrumb={props.showBreadCrumb}
         title={props.allListTitle}
         selectable={props.selectable}
         searchBoxPlaceholder={props.searchBoxPlaceholder}
@@ -32,6 +33,7 @@ const MultiSelector = (props) => {
 
 MultiSelector.propTypes = {
   // All list props
+  showBreadCrumb: PropTypes.bool,
   allListTitle: PropTypes.string.isRequired,
   selectable: PropTypes.bool,
   searchBoxPlaceholder: PropTypes.string.isRequired,
@@ -55,6 +57,7 @@ MultiSelector.propTypes = {
 };
 
 MultiSelector.defaultProps = {
+  showBreadCrumb: true,
   selectable: true,
   inheritable: false
 };

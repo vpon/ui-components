@@ -69,6 +69,7 @@ class AllList extends Component {
 
   renderBreadcrumb() {
     const parentId = this.props.dataTableProps.query.parent_id;
+
     if (!parentId) {
       return (
         <ol className="breadcrumb">
@@ -105,7 +106,7 @@ class AllList extends Component {
             keyword={query.keyword}
           />
         </div>
-        {this.renderBreadcrumb()}
+        {this.props.showBreadCrumb ? this.renderBreadcrumb() : null}
         <div className="items-to-pick">
           <DataTable
             dataSource={this.props.listingItems}
@@ -134,6 +135,7 @@ class AllList extends Component {
 }
 
 AllList.propTypes = {
+  showBreadCrumb: PropTypes.bool,
   title: PropTypes.string.isRequired,
   selectable: PropTypes.bool,
   searchBoxPlaceholder: PropTypes.string.isRequired,
