@@ -100,12 +100,16 @@ class SelectedList extends Component {
     return (
       <div className="panel panel-default pick-panel col-xs-6">
         <div className="panel-heading">
-          <button type="button" className="btn btn-default btn-sm pull-right" onClick={this.handleRemoveAll}>
-            {this.props.removeAllLabel}
-          </button>
+          {
+            isEmpty(this.props.selectedItems) ?
+            null :
+            <button type="button" className="btn btn-default btn-sm pull-right" onClick={this.handleRemoveAll}>
+              {this.props.removeAllLabel}
+            </button>
+          }
           <strong>{this.props.title}</strong>
         </div>
-        <div className="picked-items picked-items__height-breadcrumb">
+        <div className={`picked-items picked-items__height-${this.props.showBreadCrumb ? 'breadcrumb' : 'default'}`}>
           {this.renderItems(allSelectedItems, this.props.inheritedItems)}
         </div>
       </div>
@@ -114,6 +118,7 @@ class SelectedList extends Component {
 }
 
 SelectedList.propTypes = {
+  showBreadCrumb: PropTypes.bool,
   title: PropTypes.string.isRequired,
   removeAllLabel: PropTypes.string.isRequired,
   selectedItems: PropTypes.array.isRequired,

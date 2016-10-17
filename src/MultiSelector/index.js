@@ -26,6 +26,7 @@ const MultiSelector = (props) => {
         inheritedItems={props.inheritedItems}
         onChange={props.onChange}
         inheritText={props.inheritText}
+        showBreadCrumb={props.showBreadCrumb}
       />
     </div>
   );
