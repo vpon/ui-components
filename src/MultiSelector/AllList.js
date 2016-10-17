@@ -118,6 +118,7 @@ class AllList extends Component {
             resizableColumns={false}
             style={{height: 30 * 10 + 28}}
             wrapperClassName="table-bordered"
+            scrollbarSize={0}
           />
         </div>
         <div className="panel-footer text-right">
