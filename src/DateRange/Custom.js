@@ -6,8 +6,6 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
 import moment from 'moment-timezone';
 
-const NO_BREAK_SPACE = '\u00a0';
-
 class CustomDialog extends Component{
   constructor(props) {
     super(props);
@@ -29,7 +27,9 @@ class CustomDialog extends Component{
           startText = date;
           focusOn = 'end';
         } else {
-          startText = '';
+          startText = date;
+          endText = '';
+          focusOn = 'end';
         }
       } else if (this.state.focusOn === 'end') {
         startText = this.state.startText;
@@ -161,7 +161,7 @@ class CustomDialog extends Component{
               onChange={this.handleInputChange}
               placeholder={this.props.dateFormat}
             />
-            {NO_BREAK_SPACE}～{NO_BREAK_SPACE}
+            &nbsp;～&nbsp;
             <input
               type="text"
               name="end"
