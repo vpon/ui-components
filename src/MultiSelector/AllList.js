@@ -61,7 +61,13 @@ class AllList extends Component {
       sortable: false,
       style: { textAlign: 'center' },
       render: (value, data) => {
-        const checked = find(this.props.selectedItems, c => { return (c.id == data.id) || find(c.children, i => { return i.id == data.id }); });
+        const parentId = this.props.dataTableProps.query.parent_id;
+        const checked = find(this.props.selectedItems, c => {
+          if (parentId) {
+            return find(c.children, i => { return i.id == data.id })
+          }
+          return c.id == data.id
+        });
         return <i onClick={this.handleSelect.bind(this, data)} className={classNames('fa', 'fa-check-circle', 'fa-lg', {'text-success': checked})}/>;
       }
     };
