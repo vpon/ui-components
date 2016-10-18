@@ -13,8 +13,8 @@ class CustomDialog extends Component{
     this.state = {
       focusOn: 'start',
       startText: moment.tz(props.start_at, props.tzName).format(props.dateFormat) || '',
-      endText: (props.end_at && moment.tz(props.end_at, props.tzName).format(props.dateFormat)) || '',
-      defaultDate: moment.tz(props.start_at, props.tzName).format(props.dateFormat)
+      endText: (props.end_at && moment.tz(props.end_at, props.tzName).format(props.dateFormat)) || ''
+      // defaultDate: moment.tz(props.start_at, props.tzName).format(props.dateFormat)
     };
 
     this.handleChangeDate = (date) => {
@@ -50,8 +50,8 @@ class CustomDialog extends Component{
       const input = e.target;
       if (this.state.focusOn !== input.name) {
         this.setState({
-          focusOn: input.name,
-          defaultDate: input.value
+          focusOn: input.name
+          // defaultDate: input.value
         });
       }
     };
@@ -60,9 +60,9 @@ class CustomDialog extends Component{
       const input = e.currentTarget;
       let newState = {};
       newState[`${input.name}Text`] = input.value;
-      if (moment(input.value, this.props.dateFormat, true).isValid()) {
-        newState['defaultDate'] = input.value;
-      }
+      // if (moment(input.value, this.props.dateFormat, true).isValid()) {
+      //   newState['defaultDate'] = input.value;
+      // }
       this.setState(newState);
     };
 
@@ -103,7 +103,7 @@ class CustomDialog extends Component{
         dateFormat: 'yy/mm/dd',
         showButtonPanel: false,
         utcOffset: self.props.utcOffset,
-        defaultDate: self.state.defaultDate,
+        //defaultDate: self.state.defaultDate,
         beforeShowDay(date) {
           let cssClasses = [];
           const selectedDate = $.datepicker.formatDate('yy/mm/dd', date);
