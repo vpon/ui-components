@@ -2,6 +2,7 @@ import map from 'lodash/collection/map';
 import pick from 'lodash/object/pick';
 import last from 'lodash/array/last';
 import isEqual from 'lodash/lang/isEqual';
+import find from 'lodash/collection/find';
 import classNames from 'classnames';
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
@@ -126,7 +127,13 @@ class DataTable extends Component {
   componentWillReceiveProps(nextProps) {
     const oldColumnNames = map(this.columns, 'name').sort();
     const newColumnNames = map(nextProps.columns, 'name').sort();
-    if (!isEqual(oldColumnNames, newColumnNames)) {
+    if (isEqual(oldColumnNames, newColumnNames)){
+      this.columns = this.columns.map((oldColumn) => {
+        return find(nextProps.columns, (column) => {
+          return oldColumn.name === column.name;
+        });
+      });
+    } else {
       this.columns = nextProps.columns;
     }
   }

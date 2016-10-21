@@ -1,8 +1,24 @@
 import React, { PropTypes } from 'react';
 import AllList from './AllList';
 import SelectedList from './SelectedList';
+import find from 'lodash/collection/find';
+import cloneDeep from 'lodash/lang/cloneDeep';
+import uniqBy from 'lodash.uniqby';
 
 const MultiSelector = (props) => {
+  let allSelectedItems = cloneDeep(props.selectedItems);
+  if (props.inheritable) {
+    const inheritedItems = cloneDeep(props.inheritedItems);
+    allSelectedItems = uniqBy(inheritedItems.concat(allSelectedItems), 'id');
+    props.selectedItems.forEach(item => {
+      const selectedItem = find(allSelectedItems, i => { return i.id == item.id; });
+      if (selectedItem.children) {
+        selectedItem.children = uniqBy(selectedItem.children.concat(item.children || []), 'id');
+      } else {
+        selectedItem.children = item.children;
+      }
+    });
+  }
   return (
     <div className="row-gapless">
       <AllList
@@ -17,6 +33,7 @@ const MultiSelector = (props) => {
         inheritedItems={props.inheritedItems}
         dataTableProps={props.dataTableProps}
         onChange={props.onChange}
+        allSelectedItems={allSelectedItems}
       />
       <SelectedList
         title={props.selectedListTitle}
@@ -27,6 +44,7 @@ const MultiSelector = (props) => {
         onChange={props.onChange}
         inheritText={props.inheritText}
         showBreadCrumb={props.showBreadCrumb}
+        allSelectedItems={allSelectedItems}
       />
     </div>
   );

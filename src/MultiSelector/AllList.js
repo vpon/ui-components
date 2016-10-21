@@ -1,7 +1,11 @@
 /* eslint eqeqeq: "off" */
 import find from 'lodash/collection/find';
 import findIndex from 'lodash/array/findIndex';
+import intersection from 'lodash/array/intersection';
+import isEqual from 'lodash/lang/isEqual'
 import get from 'lodash/object/get';
+import result from 'lodash/object/result';
+import uniqBy from 'lodash.uniqby';
 import cloneDeep from 'lodash/lang/cloneDeep';
 import classNames from 'classnames';
 import React, { Component, PropTypes } from 'react';
@@ -54,22 +58,117 @@ class AllList extends Component {
       this.props.onChange(selectedItems);
     };
 
-    this.selectorColumn = {
-      name: 'flag',
-      title: <i className='fa fa-check-circle fa-lg text-success' />,
-      width: 30,
-      sortable: false,
-      style: { textAlign: 'center' },
-      render: (value, data) => {
-        const parentId = this.props.dataTableProps.query.parent_id;
-        const checked = find(this.props.selectedItems, c => {
-          if (parentId) {
-            return find(c.children, i => { return i.id == data.id })
+    this.handleCheckAll = (e) => {
+      e.preventDefault();
+      const parentId = this.props.dataTableProps.query.parent_id;
+      let inheritedIds = [];
+      let listingItems = cloneDeep(this.props.listingItems);
+      let selectedItems = cloneDeep(this.props.selectedItems);
+      const inheritedItems = cloneDeep(this.props.inheritedItems);
+      if (this.props.inheritable) {
+        if (parentId) {
+          const inheritedItem = find(inheritedItems, i => { return i.id == parentId; });
+          if (inheritedItem) {
+            inheritedIds = inheritedItem.children.map((item) => {
+              return item.id.toString();
+            });
           }
-          return c.id == data.id
-        });
-        return <i onClick={this.handleSelect.bind(this, data)} className={classNames('fa', 'fa-check-circle', 'fa-lg', {'text-success': checked})}/>;
+        } else {
+          inheritedIds = inheritedItems.map((item) => {
+            return item.id.toString();
+          });
+        }
       }
+      const listIds = listingItems.map((item) => {
+        return item.id.toString();
+      });
+      const selectedIds = selectedItems.map((item) => {
+        return item.id.toString();
+      });
+      if (this.props.inheritable) {
+        listingItems = listingItems.filter((item) => {
+          return !inheritedIds.includes(item.id.toString());
+        });
+      }
+      if (parentId) {
+        if (this.isCheckedAll()) {
+          selectedItems.forEach((item) => {
+            if (item.id == parentId) {
+              const newChildren = item.children.filter((i) => {
+                return !listIds.includes(i.id.toString());
+              });
+              item.children = newChildren;
+            }
+          });
+        } else {
+          if (selectedIds.includes(parentId)) {
+            selectedItems.forEach((item) => {
+              if (item.id == parentId) {
+                item.children = uniqBy(item.children.concat(listingItems), 'id');
+              }
+            });
+          } else {
+            let currentItem = find(this.props.allItems, c => {
+              return c.id == parentId;
+            });
+            currentItem.children = listingItems;
+            selectedItems = uniqBy(selectedItems.concat([currentItem]), 'id');
+          }
+        }
+      } else {
+        if (this.isCheckedAll()) {
+          selectedItems = selectedItems.filter((item) => {
+            return !listIds.includes(item.id.toString());
+          });
+        } else {
+          listingItems.forEach((item) => {
+            item.children = [];
+          });
+          selectedItems = uniqBy(selectedItems.concat(listingItems), 'id');
+        }
+      }
+      this.props.onChange(selectedItems);
+    };
+
+    this.isCheckedAll = () => {
+      let selectedIds = [];
+      const parentId = this.props.dataTableProps.query.parent_id;
+      if (parentId) {
+        const childItems = result(find(this.props.allSelectedItems, c => {
+          return c.id == parentId;
+        }), 'children') || [];
+        selectedIds = childItems.map((item) => {
+          return parseInt(item.id, 10);
+        });
+      } else {
+        selectedIds = this.props.allSelectedItems.map((item) => {
+          return parseInt(item.id, 10);
+        });
+      }
+      const listIds = this.props.listingItems.map((item) => {
+        return parseInt(item.id, 10);
+      });
+      return isEqual(intersection(listIds, selectedIds).sort(), listIds.sort());
+    };
+
+    this.getSelectorColumn = () => {
+      return [{
+        name: 'flag',
+        title: <i className={classNames('fa fa-check-circle fa-lg', {'text-success': this.isCheckedAll()})} onClick={this.handleCheckAll} />,
+        width: 30,
+        sortable: false,
+        style: { textAlign: 'center' },
+        render: (value, data) => {
+          const parentId = this.props.dataTableProps.query.parent_id;
+          const checked = find(this.props.allSelectedItems, c => {
+            if (parentId) {
+              return find(c.children, i => { return i.id == data.id })
+            }
+            return c.id == data.id
+          });
+          return <i onClick={this.handleSelect.bind(this, data)} className={classNames('fa', 'fa-check-circle', 'fa-lg', {'text-success': checked})}/>;
+        }
+      }];
     };
   }
 
@@ -100,7 +199,7 @@ class AllList extends Component {
 
   render() {
     const { onQueryChange, columns, total, query } = this.props.dataTableProps;
-    const allColumns = this.props.selectable ? [this.selectorColumn].concat(columns) : columns;
+    const allColumns = this.props.selectable ? this.getSelectorColumn().concat(columns) : columns;
 
     return (
       <div className="panel panel-default pick-panel col-xs-6">
@@ -150,6 +249,7 @@ AllList.propTypes = {
   selectedItems: PropTypes.array.isRequired,
   allItems: PropTypes.array.isRequired,
   inheritedItems: PropTypes.array,
+  allSelectedItems: PropTypes.array,
   onChange: PropTypes.func.isRequired,
   dataTableProps: PropTypes.shape({
     onQueryChange: PropTypes.func.isRequired,

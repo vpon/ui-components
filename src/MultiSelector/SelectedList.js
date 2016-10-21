@@ -3,7 +3,6 @@ import remove from 'lodash/array/remove';
 import find from 'lodash/collection/find';
 import isEmpty from 'lodash/lang/isEmpty';
 import cloneDeep from 'lodash/lang/cloneDeep';
-import uniqBy from 'lodash.uniqby';
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 
@@ -83,20 +82,6 @@ class SelectedList extends Component {
   }
 
   render() {
-    let allSelectedItems = cloneDeep(this.props.selectedItems);
-    if (this.props.inheritable) {
-      const inheritedItems = cloneDeep(this.props.inheritedItems);
-      allSelectedItems = uniqBy(inheritedItems.concat(allSelectedItems), 'id');
-      this.props.selectedItems.forEach(item => {
-        const selectedItem = find(allSelectedItems, i => { return i.id == item.id; });
-        if (selectedItem.children) {
-          selectedItem.children = uniqBy(selectedItem.children.concat(item.children || []), 'id');
-        } else {
-          selectedItem.children = item.children;
-        }
-      });
-    }
-
     return (
       <div className="panel panel-default pick-panel col-xs-6">
         <div className="panel-heading">
@@ -110,7 +95,7 @@ class SelectedList extends Component {
           <strong>{this.props.title}</strong>
         </div>
         <div className={`picked-items picked-items__height-${this.props.showBreadCrumb ? 'breadcrumb' : 'default'}`}>
-          {this.renderItems(allSelectedItems, this.props.inheritedItems)}
+          {this.renderItems(this.props.allSelectedItems, this.props.inheritedItems)}
         </div>
       </div>
     );
@@ -125,7 +110,8 @@ SelectedList.propTypes = {
   onChange: PropTypes.func.isRequired,
   inheritedItems: PropTypes.array,
   inheritable: PropTypes.bool,
-  inheritText: PropTypes.string
+  inheritText: PropTypes.string,
+  allSelectedItems: PropTypes.array
 };
 
 SelectedList.defaultProps = {
