@@ -78,6 +78,10 @@ class SingleSelector extends Component {
     return searchBox;
   }
 
+  componentDidUpdate() {
+    this.refs.singleSelector.refs.grid.scroller.verticalScrollAt(0);
+  }
+
   render() {
     const { columns, onQueryChange, dataSource, total, emptyText,  } = this.props.dataTableProps;
     const { order } = this.props.dataTableProps.query;
@@ -100,6 +104,7 @@ class SingleSelector extends Component {
           <p><span className="small">{this.props.selectedItemLabel}</span></p>
           <div className="table-bordered hack-no-horizontal-scrollbar">
             <DataTable
+              ref="singleSelector"
               onPageChange={onQueryChange}
               selectable={false}
               dataSource={dataSource}
