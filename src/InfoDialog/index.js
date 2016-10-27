@@ -15,7 +15,7 @@ class InfoDialog extends Component{
         </Modal.Body>
         <Modal.Footer bsClass={this.props.footerClassName}>
           { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{this.props.cancelText}</Button> : null}
-          <Button bsStyle="primary" data-dismiss="modal" onClick={this.props.onSubmit}>{this.props.submitText}</Button>
+          <Button bsStyle={this.props.submitStyle} data-dismiss="modal" onClick={this.props.onSubmit}>{this.props.submitText}</Button>
         </Modal.Footer>
       </Modal>
     );
@@ -37,7 +37,8 @@ InfoDialog.propTypes = {
   bodyClassName: PropTypes.string,
   footerClassName: PropTypes.string,
   bsSize: PropTypes.string,
-  cancelText: PropTypes.string
+  cancelText: PropTypes.string,
+  submitStyle: PropTypes.string
 };
 
 InfoDialog.defaultProps = {
@@ -48,7 +49,8 @@ InfoDialog.defaultProps = {
   bodyClassName: 'modal-body',
   footerClassName: 'modal-footer',
   bsSize: 'small',
-  cancelText: 'Cancel'
+  cancelText: 'Cancel',
+  submitStyle: 'primary'
 };
 
 export default InfoDialog;
