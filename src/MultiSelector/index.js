@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { PropTypes } from 'react';
 import AllList from './AllList';
 import SelectedList from './SelectedList';
@@ -62,7 +63,8 @@ MultiSelector.propTypes = {
     onQueryChange: PropTypes.func.isRequired,
     columns: PropTypes.array.isRequired,
     total: PropTypes.total,
-    query: PropTypes.object.isRequired
+    query: PropTypes.object.isRequired,
+    emptyText: PropTypes.string
   }),
   // Selected list props
   selectedListTitle: PropTypes.string.isRequired,
@@ -78,7 +80,10 @@ MultiSelector.propTypes = {
 MultiSelector.defaultProps = {
   showBreadCrumb: true,
   selectable: true,
-  inheritable: false
+  inheritable: false,
+  dataTableProps: {
+    emptyText: 'No records'
+  }
 };
 
 export default MultiSelector;
