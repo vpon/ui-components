@@ -198,7 +198,7 @@ class AllList extends Component {
   }
 
   render() {
-    const { onQueryChange, columns, total, query } = this.props.dataTableProps;
+    const { onQueryChange, columns, total, query, emptyText } = this.props.dataTableProps;
     const allColumns = this.props.selectable ? this.getSelectorColumn().concat(columns) : columns;
 
     return (
@@ -223,6 +223,7 @@ class AllList extends Component {
             resizableColumns={false}
             style={{height: 30 * 10 + 28}}
             wrapperClassName="table-bordered"
+            emptyText={emptyText}
             scrollbarSize={0}
           />
         </div>
@@ -255,7 +256,8 @@ AllList.propTypes = {
     onQueryChange: PropTypes.func.isRequired,
     columns: PropTypes.array.isRequired,
     total: PropTypes.total,
-    query: PropTypes.object.isRequired
+    query: PropTypes.object.isRequired,
+    emptyText: PropTypes.string
   })
 };
 
