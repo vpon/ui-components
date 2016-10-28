@@ -100,7 +100,9 @@ class DataTable extends Component {
     };
 
     this.onSelectionChange = (newSelectedId) => {
-      this.setState({selected: newSelectedId});
+      if (this.props.focusable) {
+        this.setState({selected: newSelectedId});
+      }
     };
 
     this.fixScrollbar = () => {
@@ -212,6 +214,7 @@ DataTable.propTypes = {
   ]),
   sortInfo: PropTypes.array, // Sort info
   selectable: PropTypes.bool, // Set to true to add select all column
+  focusable: PropTypes.bool, // Set to true to selected the column
   resizableColumns: PropTypes.bool, // Set to true to make columns can be resized
   pager: PropTypes.oneOfType([ // Pagination: 'top', 'bottom' and false
     PropTypes.string,
@@ -235,6 +238,7 @@ DataTable.propTypes = {
 
 DataTable.defaultProps = {
   selectable: true, // Set to true to add select all column
+  focusable: true, // Set to true to selected the column
   resizableColumns: true, // Columns can be resized
   pager: 'top', // Set default pager position is top right.
   style: {

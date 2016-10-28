@@ -78,6 +78,15 @@ class SingleSelector extends Component {
     return searchBox;
   }
 
+  renderSelectedItemLabel() {
+    if (this.props.selectedItemLabel) {
+      return (
+        <p><span className="small">{this.props.selectedItemLabel}</span></p>
+      );
+    }
+    return false;
+  }
+
   componentDidUpdate() {
     this.refs.singleSelector.refs.grid.scroller.verticalScrollAt(0);
   }
@@ -94,14 +103,14 @@ class SingleSelector extends Component {
           <span className="input-group-btn">
             <Button disabled={this.props.disabled} onClick={this.handleCollapse}><i className="fa fa-plus"></i></Button>
           </span>
-          <input className="form-control" type="text" disabled placeholder={this.props.selectedItemLabel} />
+          <input className="form-control" type="text" disabled placeholder={this.props.inputPlaceholder || this.props.selectedItemLabel} />
         </div>
         <div className={classNames('block', 'block-expandable', warpperClassName, {'hidden': !this.state.expanded})}>
           <Button onClick={this.handleCollapse}><i className="fa fa-minus"></i></Button>
           &nbsp;
           {this.props.title}
           {this.renderSearchBar()}
-          <p><span className="small">{this.props.selectedItemLabel}</span></p>
+          {this.renderSelectedItemLabel()}
           <div className="table-bordered hack-no-horizontal-scrollbar">
             <DataTable
               ref="singleSelector"
@@ -134,6 +143,7 @@ SingleSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   searchBoxPlaceholder: PropTypes.string.isRequired,
+  inputPlaceholder: PropTypes.string.isRequired,
   filterByState: PropTypes.bool,
   stateItems: PropTypes.array,
   selectedItemLabel: PropTypes.string,

@@ -225,6 +225,7 @@ class AllList extends Component {
             wrapperClassName="table-bordered"
             emptyText={emptyText}
             scrollbarSize={0}
+            focusable={false}
           />
         </div>
         <div className="panel-footer text-right">
