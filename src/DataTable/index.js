@@ -155,7 +155,6 @@ class DataTable extends Component {
     );
     const table = (
       <DataGrid
-        ref="grid"
         idProperty={this.props.idProperty}
         dataSource={this.props.dataSource}
         columns={columns}
