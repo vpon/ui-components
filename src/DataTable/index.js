@@ -86,7 +86,8 @@ class DataTable extends Component {
     };
 
     this.onColumnResize = (firstCol, firstSize) => {
-      firstCol.width = firstSize;
+      const columnMinWidth = firstCol.minWidth || this.props.columnMinWidth;
+      firstCol.width = Math.max(firstSize, columnMinWidth);
       this.setState({});
 
       // Send out new column info
@@ -232,6 +233,7 @@ DataTable.propTypes = {
   emptyText: PropTypes.string, // set empty text
   scrollbarSize: PropTypes.number, // set vertical scroll bar width
   rowHeight: PropTypes.number,
+  columnMinWidth: PropTypes.number,
   paginationClassName: PropTypes.string
 };
 
@@ -247,7 +249,8 @@ DataTable.defaultProps = {
   idProperty: 'id',
   emptyText: 'No records',
   scrollbarSize: 20,
-  rowHeight: 30
+  rowHeight: 30,
+  columnMinWidth: 50
 };
 
 DataTable.Pagination = Pagination;
