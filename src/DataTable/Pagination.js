@@ -104,7 +104,7 @@ const Pagination = (props) => {
       pageSizes={props.pageSizes}
       dataSourceCount={props.total}
       minPage={1}
-      maxPage={maxPage}
+      maxPage={maxPage === 0 ? 1 : maxPage}
       onPageChange={props.onPageChange}
       paginationClassName={props.paginationClassName}
     />
