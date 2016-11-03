@@ -3,6 +3,7 @@ import find from 'lodash/collection/find';
 import findIndex from 'lodash/array/findIndex';
 import intersection from 'lodash/array/intersection';
 import isEqual from 'lodash/lang/isEqual'
+import isEmpty from 'lodash/lang/isEmpty';
 import get from 'lodash/object/get';
 import result from 'lodash/object/result';
 import uniqBy from 'lodash.uniqby';
@@ -131,6 +132,9 @@ class AllList extends Component {
     };
 
     this.isCheckedAll = () => {
+      if (isEmpty(this.props.listingItems)) {
+        return false;
+      }
       let selectedIds = [];
       const parentId = this.props.dataTableProps.query.parent_id;
       if (parentId) {
