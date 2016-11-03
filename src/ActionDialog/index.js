@@ -53,6 +53,7 @@ class ActionDialog extends Component{
         </Modal.Header>
         <Modal.Body bsClass={this.props.bodyClassName} style={assign({}, this.props.bodyStyle, {maxHeight: maxHeight})}>
           {this.props.warning}
+          {this.props.childPosition === 'top' ? this.props.children : null}
           <div className="panel panel-default">
             <DataTable
               offset={this.state.offset}
@@ -79,6 +80,7 @@ class ActionDialog extends Component{
               />
             </div>
           </div>
+          {this.props.childPosition === 'bottom' ? this.props.children : null}
         </Modal.Body>
         <Modal.Footer bsClass={this.props.footerClassName}>
           { this.props.hasCancelButton ? <Button data-dismiss="modal" onClick={this.props.onHide}>{this.props.cancelText}</Button> : null}
@@ -110,7 +112,8 @@ ActionDialog.propTypes = {
   bodyClassName: PropTypes.string,
   footerClassName: PropTypes.string,
   bsSize: PropTypes.string,
-  rowHeight: PropTypes.number
+  rowHeight: PropTypes.number,
+  childPosition: PropTypes.string
 };
 
 ActionDialog.defaultProps = {
@@ -125,7 +128,8 @@ ActionDialog.defaultProps = {
   bodyClassName: 'modal-body',
   footerClassName: 'modal-footer',
   bsSize: 'medium',
-  bodyStyle: {}
+  bodyStyle: {},
+  childPosition: 'top'
 };
 
 export default ActionDialog;
