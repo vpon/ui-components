@@ -5,10 +5,15 @@ import isEmpty from 'lodash/lang/isEmpty';
 import cloneDeep from 'lodash/lang/cloneDeep';
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
+import InfoDialog from '../InfoDialog';
 
 class SelectedList extends Component {
   constructor() {
     super();
+
+    this.state = {
+      showRemoveAll: false
+    };
 
     this.handleRemove = (id, parentId) => {
       let selectedItems = cloneDeep(this.props.selectedItems);
@@ -28,7 +33,16 @@ class SelectedList extends Component {
     };
 
     this.handleRemoveAll = () => {
+      this.setState({showRemoveAll: true});
+    };
+
+    this.handleClose = () => {
+      this.setState({showRemoveAll: false});
+    };
+
+    this.handleSubmit = () => {
       this.props.onChange([]);
+      this.handleClose();
     };
   }
 
@@ -97,6 +111,18 @@ class SelectedList extends Component {
         <div className={`picked-items picked-items__height-${this.props.showBreadCrumb ? 'breadcrumb' : 'default'}`}>
           {this.renderItems(this.props.allSelectedItems, this.props.inheritedItems)}
         </div>
+        <InfoDialog
+          show={this.state.showRemoveAll}
+          title={<span>
+                  <i className="fa fa-exclamation-triangle"></i>&nbsp;{this.props.removeAllWarningTitle}
+                </span>}
+          message={<span className="text-warning">{this.props.removeAllWarningMessage}</span>}
+          dialogClassName="modal-warning"
+          onHide={this.handleClose}
+          onSubmit={this.handleSubmit}
+          submitText={this.props.removeAllWaringSubmitText}
+          submitStyle="default"
+        />
       </div>
     );
   }
@@ -108,6 +134,9 @@ SelectedList.propTypes = {
   removeAllLabel: PropTypes.string.isRequired,
   selectedItems: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
+  removeAllWarningTitle: PropTypes.string,
+  removeAllWarningMessage: PropTypes.node,
+  removeAllWaringSubmitText: PropTypes.string,
   inheritedItems: PropTypes.array,
   inheritable: PropTypes.bool,
   inheritText: PropTypes.string,
@@ -116,7 +145,10 @@ SelectedList.propTypes = {
 
 SelectedList.defaultProps = {
   inheritedItems: [],
-  inheritText: 'Placement Group-Level Setting'
+  inheritText: 'Placement Group-Level Setting',
+  removeAllWarningTitle: 'Warning!',
+  removeAllWarningMessage: 'Are you sure you want to remove all selected items?',
+  removeAllWaringSubmitText: 'OK'
 };
 
 export default SelectedList;
