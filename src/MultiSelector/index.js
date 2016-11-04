@@ -74,7 +74,11 @@ MultiSelector.propTypes = {
   selectedItems: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
   inheritedItems: PropTypes.array,
-  inheritText: PropTypes.string
+  inheritText: PropTypes.string,
+  // Remove All Warnig Dialog props
+  removeAllWarningTitle: PropTypes.string,
+  removeAllWarningMessage: PropTypes.string,
+  removeAllWaringSubmitText: PropTypes.string
 };
 
 MultiSelector.defaultProps = {
