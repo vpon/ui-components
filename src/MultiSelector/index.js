@@ -39,6 +39,10 @@ const MultiSelector = (props) => {
       <SelectedList
         title={props.selectedListTitle}
         removeAllLabel={props.removeAllLabel}
+        removeAllWarningTitle={props.removeAllWarningTitle}
+        removeAllWarningMessage={props.removeAllWarningMessage}
+        removeAllWaringSubmitText={props.removeAllWaringSubmitText}
+        removeAllWaringCancelText={props.removeAllWaringCancelText}
         inheritable={props.inheritable}
         selectedItems={props.selectedItems}
         inheritedItems={props.inheritedItems}
@@ -78,7 +82,8 @@ MultiSelector.propTypes = {
   // Remove All Warnig Dialog props
   removeAllWarningTitle: PropTypes.string,
   removeAllWarningMessage: PropTypes.string,
-  removeAllWaringSubmitText: PropTypes.string
+  removeAllWaringSubmitText: PropTypes.string,
+  removeAllWaringCancelText: PropTypes.string
 };
 
 MultiSelector.defaultProps = {

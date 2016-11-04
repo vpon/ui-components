@@ -121,6 +121,7 @@ class SelectedList extends Component {
           onHide={this.handleClose}
           onSubmit={this.handleSubmit}
           submitText={this.props.removeAllWaringSubmitText}
+          cancelText={this.props.removeAllWaringCancelText}
           submitStyle="default"
         />
       </div>
@@ -137,6 +138,7 @@ SelectedList.propTypes = {
   removeAllWarningTitle: PropTypes.string,
   removeAllWarningMessage: PropTypes.node,
   removeAllWaringSubmitText: PropTypes.string,
+  removeAllWaringCancelText: PropTypes.string,
   inheritedItems: PropTypes.array,
   inheritable: PropTypes.bool,
   inheritText: PropTypes.string,
