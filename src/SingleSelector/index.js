@@ -47,6 +47,12 @@ class SingleSelector extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.expanded !== this.props.expanded) {
+      this.setState({ expanded: nextProps.expanded });
+    }
+  }
+
   renderSearchBar() {
     const currentState = this.props.dataTableProps.query.state;
     const searchBox = (<SearchBox
