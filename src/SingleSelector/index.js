@@ -12,7 +12,7 @@ class SingleSelector extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { expanded: false };
+    this.state = { expanded: props.expanded };
 
     this.radioColumn = {
       name: 'radio',
@@ -130,6 +130,7 @@ class SingleSelector extends Component {
 
 SingleSelector.propTypes = {
   warpperClassName: PropTypes.string,
+  expanded: PropTypes.bool,
   disabled: PropTypes.bool,
   selectedId: PropTypes.oneOfType([
     PropTypes.string,
@@ -158,6 +159,7 @@ SingleSelector.propTypes = {
 
 SingleSelector.defaultProps = {
   warpperClassName: 'form-width-md',
+  expanded: false,
   disabled: false,
   filterByState: false,
   stateItems: [
