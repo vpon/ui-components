@@ -1,12 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
+import _ from 'lodash';
 
 class InvalidWarning extends Component {
   render () {
-    if (this.props.errorMessages && this.props.errorMessages.length > 0) {
+    const { errorMessages } = this.props;
+    if (!_.isEmpty(errorMessages)) {
       return (
-        <OverlayTrigger placement="right" overlay={<Tooltip id="1">{this.props.errorMessages.join(', ')}</Tooltip>}>
+        <OverlayTrigger
+          placement="right"
+          overlay={
+            <Tooltip id="1">
+              {_.isArray(errorMessages) ? errorMessages.join(', ') : errorMessages}
+            </Tooltip>}
+        >
           <i className={`fa fa-exclamation-triangle fa-lg text-danger ${this.props.iconClassName || ''}`}/>
         </OverlayTrigger>
       );
@@ -16,7 +24,10 @@ class InvalidWarning extends Component {
 }
 
 InvalidWarning.propTypes = {
-  errorMessages: PropTypes.arrayOf(PropTypes.string),
+  errorMessages: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string
+  ]),
   iconClassName: PropTypes.string
 };
 
