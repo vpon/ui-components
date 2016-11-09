@@ -103,7 +103,7 @@ class CustomDialog extends Component{
         dateFormat: 'yy/mm/dd',
         showButtonPanel: false,
         utcOffset: self.props.utcOffset,
-        //defaultDate: self.state.defaultDate,
+        defaultDate: self.state.endText,
         beforeShowDay(date) {
           let cssClasses = [];
           const selectedDate = $.datepicker.formatDate('yy/mm/dd', date);
