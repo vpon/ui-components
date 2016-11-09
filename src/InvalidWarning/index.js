@@ -6,7 +6,7 @@ import _ from 'lodash';
 class InvalidWarning extends Component {
   render () {
     const { errorMessages } = this.props;
-    if (errorMessages && (!_.isArray(errorMessages) || errorMessages.length > 0)) {
+    if (!_.isEmpty(errorMessages)) {
       return (
         <OverlayTrigger
           placement="right"
