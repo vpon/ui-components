@@ -124,6 +124,7 @@ class SelectedList extends Component {
           cancelText={this.props.removeAllWaringCancelText}
           submitStyle="default"
         />
+        {this.state.showRemoveAll ? <div className="modal-backdrop in"></div> : null}
       </div>
     );
   }
