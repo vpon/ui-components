@@ -20,7 +20,7 @@ class AllList extends Component {
 
     this.getOut = e => {
       e.preventDefault();
-      this.props.dataTableProps.onQueryChange({parent_id: null, offset: 0, keyword: null});
+      this.handleQueryChange({parent_id: null, offset: 0, keyword: null});
     };
 
     this.handleSelect = item => {
@@ -131,6 +131,16 @@ class AllList extends Component {
       this.props.onChange(selectedItems);
     };
 
+    this.handleQueryChange = (newQuery) => {
+      let query;
+      if (newQuery && (newQuery.hasOwnProperty('offset') || newQuery.hasOwnProperty('order'))) {
+        query = Object.assign({}, this.props.dataTableProps.query, newQuery);
+      } else {
+        query = Object.assign({}, this.props.dataTableProps.query, newQuery, {offset: 0});
+      }
+      this.props.dataTableProps.onQueryChange(query);
+    };
+
     this.isCheckedAll = () => {
       if (isEmpty(this.props.listingItems)) {
         return false;
@@ -202,7 +212,7 @@ class AllList extends Component {
   }
 
   render() {
-    const { onQueryChange, columns, total, query, emptyText } = this.props.dataTableProps;
+    const { columns, total, query, emptyText } = this.props.dataTableProps;
     const allColumns = this.props.selectable ? this.getSelectorColumn().concat(columns) : columns;
 
     return (
@@ -210,7 +220,7 @@ class AllList extends Component {
         <div className="panel-heading"><strong>{this.props.title}</strong></div>
         <div className="panel-body">
           <SearchBox
-            handleQueryChange={onQueryChange}
+            handleQueryChange={this.handleQueryChange}
             placeholder={this.props.searchBoxPlaceholder}
             keyword={query.keyword}
           />
@@ -222,7 +232,7 @@ class AllList extends Component {
             columns={allColumns}
             sortInfo={Helpers.arrayifySort(query.order)}
             pager={false}
-            onPageChange={onQueryChange}
+            onPageChange={this.handleQueryChange}
             selectable={false}
             resizableColumns={false}
             style={{height: 30 * 10 + 30}}
@@ -237,7 +247,7 @@ class AllList extends Component {
             offset={query.offset}
             limit={query.limit}
             total={total}
-            onPageChange={onQueryChange}
+            onPageChange={this.handleQueryChange}
             pageSizes={false}
           />
         </div>

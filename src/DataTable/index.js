@@ -78,11 +78,21 @@ class DataTable extends Component {
         nextSortInfo = `${preSortInfo.name},${dir}`;
       }
 
-      this.props.onPageChange({order: nextSortInfo});
+      this.handlePageChange({order: nextSortInfo});
       // Send out new sort info
       if (this.props.onStatusChange) {
         this.props.onStatusChange({sort: _sortInfo});
       }
+    };
+
+    this.handlePageChange = (newQuery) => {
+      let query;
+      if (newQuery && (newQuery.hasOwnProperty('offset') || newQuery.hasOwnProperty('order'))) {
+        query = newQuery;
+      } else {
+        query = Object.assign({}, newQuery, {offset: 0});
+      }
+      this.props.onPageChange(newQuery);
     };
 
     this.onColumnResize = (firstCol, firstSize) => {
@@ -152,7 +162,7 @@ class DataTable extends Component {
         offset={this.props.offset}
         limit={this.props.limit}
         total={this.props.total}
-        onPageChange={this.props.onPageChange}
+        onPageChange={this.handlePageChange}
         paginationClassName={this.props.paginationClassName}
       />
     );
