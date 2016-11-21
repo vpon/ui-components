@@ -1,4 +1,4 @@
-import './jquery.ui.datepicker.js';
+import datepicker from './lib/datepicker';
 import uniq from 'lodash/array/uniq';
 import React, { Component, PropTypes} from 'react';
 import { findDOMNode } from 'react-dom';
@@ -106,7 +106,7 @@ class CustomDialog extends Component{
         defaultDate: self.state.endText,
         beforeShowDay(date) {
           let cssClasses = [];
-          const selectedDate = $.datepicker.formatDate('yy/mm/dd', date);
+          const selectedDate = datepicker.formatDate('yy/mm/dd', date);
 
           if (selectedDate === self.state.startText) {
             cssClasses.push('day-in-range');
