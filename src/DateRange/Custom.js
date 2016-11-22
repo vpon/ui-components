@@ -103,6 +103,7 @@ class CustomDialog extends Component{
         dateFormat: 'yy/mm/dd',
         showButtonPanel: false,
         utcOffset: self.props.utcOffset,
+        minDate: self.state.focusOn === 'end' ? self.state.startText : '',
         defaultDate: self.state.endText,
         beforeShowDay(date) {
           let cssClasses = [];
