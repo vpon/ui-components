@@ -66,7 +66,7 @@ class SingleSelector extends Component {
         <Dropdown.Menu onSelect={this.handleStateChange}>
           {this.props.stateItems.map(item => {
             return (
-             <MenuItem eventKey={item.key} key={item.key} active={currentState === item.key}>{item.value}</MenuItem>
+             <MenuItem eventKey={item.key} key={item.key}>{item.value}</MenuItem>
             );
           })}
         </Dropdown.Menu>
