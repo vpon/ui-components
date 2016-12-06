@@ -71,7 +71,7 @@ class Pager extends Component {
         &nbsp;
         <input type="text" className="form-width-xs text-center" ref="pageNoInput" value={this.state.page} onChange={this.handleEnterPage}/>
         &nbsp;
-        of <span>{this.props.maxPage}</span>
+        {this.props.paginationPrepositionText} <span>{this.props.maxPage}</span>
         &nbsp;
         <Button disabled={this.props.page === this.props.maxPage || this.props.maxPage === 0} onClick={this.handleClickPage.bind(this, 'next')}><i className="fa fa-caret-right"></i></Button>
       </div>
@@ -90,7 +90,12 @@ Pager.propTypes = {
   minPage: PropTypes.number.isRequired,
   maxPage: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
-  paginationClassName: PropTypes.string
+  paginationClassName: PropTypes.string,
+  paginationPrepositionText: PropTypes.string
+};
+
+Pager.defaultProps = {
+  paginationPrepositionText: 'of'
 };
 
 const Pagination = (props) => {
@@ -107,6 +112,7 @@ const Pagination = (props) => {
       maxPage={maxPage === 0 ? 1 : maxPage}
       onPageChange={props.onPageChange}
       paginationClassName={props.paginationClassName}
+      paginationPrepositionText={props.paginationPrepositionText}
     />
   );
 }
@@ -120,7 +126,8 @@ Pagination.propTypes = {
   total: PropTypes.number,
   onPageChange: PropTypes.func,
   offset: PropTypes.number,
-  paginationClassName: PropTypes.string
+  paginationClassName: PropTypes.string,
+  paginationPrepositionText: PropTypes.string
 };
 
 Pagination.defaultProps = {

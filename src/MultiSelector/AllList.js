@@ -249,6 +249,7 @@ class AllList extends Component {
             total={total}
             onPageChange={this.handleQueryChange}
             pageSizes={false}
+            paginationPrepositionText={this.props.paginationPrepositionText}
           />
         </div>
       </div>
@@ -273,7 +274,8 @@ AllList.propTypes = {
     total: PropTypes.total,
     query: PropTypes.object.isRequired,
     emptyText: PropTypes.string
-  })
+  }),
+  paginationPrepositionText: PropTypes.string
 };
 
 export default AllList;
