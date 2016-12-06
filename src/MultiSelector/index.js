@@ -35,6 +35,7 @@ const MultiSelector = (props) => {
         dataTableProps={props.dataTableProps}
         onChange={props.onChange}
         allSelectedItems={allSelectedItems}
+        paginationPrepositionText={props.paginationPrepositionText}
       />
       <SelectedList
         title={props.selectedListTitle}
@@ -70,6 +71,7 @@ MultiSelector.propTypes = {
     query: PropTypes.object.isRequired,
     emptyText: PropTypes.string
   }),
+  paginationPrepositionText: PropTypes.string,
   // Selected list props
   selectedListTitle: PropTypes.string.isRequired,
   removeAllLabel: PropTypes.string.isRequired,
