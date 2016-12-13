@@ -47,6 +47,12 @@ export default {
     if (isNull(num)) {
       return '0';
     }
+    // num is following float format
+    if (Number.parseInt(num, 10) !== Number.parseFloat(num)) {
+      const [int, decimals] = num.split('.');
+      return `${this.numberWithCommas(Number.parseInt(int, 10))}.${decimals}`;
+    }
+
     return num;
   },
 
