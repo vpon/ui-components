@@ -1,6 +1,5 @@
 import isNumber from 'lodash/lang/isNumber';
 import round from 'lodash/math/round';
-import isNull from 'lodash/lang/isNull';
 import isEmpty from 'lodash/lang/isEmpty';
 import map from 'lodash/collection/map';
 import assign from 'lodash/object/assign';
@@ -44,7 +43,7 @@ export default {
     if (isNumber(num)) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
-    if (isNull(num)) {
+    if (num == null) {
       return '0';
     }
     // num is following float format
@@ -67,7 +66,7 @@ export default {
     if (isNumber(num)) {
       return round(num * 100, 3).toFixed(3) + '%';
     }
-    if (isNull(num)) {
+    if (num == null) {
       return '0.000%';
     }
     return num;
@@ -81,7 +80,7 @@ export default {
       const suffix = numArr[1] ? '.' + numArr[1] : '';
       return currency + numArr[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',') + suffix;
     }
-    if (isNull(num)) {
+    if (num == null) {
       return currency + '0.00';
     }
     return num;
