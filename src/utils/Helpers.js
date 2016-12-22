@@ -56,9 +56,6 @@ export default {
   },
 
   currencyWithSymbol(currency) {
-    if (currency === 'CNY' || currency === 'JPY') {
-      return currency + ' ￥';
-    }
     return currency + ' $';
   },
 
